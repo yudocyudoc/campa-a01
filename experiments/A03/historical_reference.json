@@ -1,0 +1,289 @@
+{
+  "source_repo": "yudocyudoc/c0.0",
+  "source_commit": "d90ff87ba47572edd7d2084ecdc62dfba54cd14d",
+  "source_notebook": "CEI_C0_0_B1_SD5_G5_Benchmark_Corregido_40_Mundos_ejecutado.ipynb",
+  "source_blob_sha": "56acefd6e5d3eddbee542d4af8e4b25369bfae18",
+  "extraction": "Regex over historical executed cell 16 WORLD outcome log; literal case-level result, not refitted",
+  "cases": [
+    {
+      "case_id": "W001",
+      "true_primitive": "accumulation",
+      "predicted_primitive": "self_reinforcing",
+      "winner_feature": "diff::market_shock-nominal_capacity",
+      "primary_outcome": "COMMIT_WRONG"
+    },
+    {
+      "case_id": "W002",
+      "true_primitive": "accumulation",
+      "predicted_primitive": "accumulation",
+      "winner_feature": "diff::market_shock-nominal_capacity",
+      "primary_outcome": "COMMIT_WRONG"
+    },
+    {
+      "case_id": "W003",
+      "true_primitive": "accumulation",
+      "predicted_primitive": "accumulation",
+      "winner_feature": "ratio::incoming_orders/nominal_capacity",
+      "primary_outcome": "COMMIT_CORRECT"
+    },
+    {
+      "case_id": "W004",
+      "true_primitive": "accumulation",
+      "predicted_primitive": "accumulation",
+      "winner_feature": "ratio::incoming_orders/nominal_capacity",
+      "primary_outcome": "COMMIT_CORRECT"
+    },
+    {
+      "case_id": "W005",
+      "true_primitive": "accumulation",
+      "predicted_primitive": "accumulation",
+      "winner_feature": "diff::incoming_orders-nominal_capacity",
+      "primary_outcome": "COMMIT_WRONG"
+    },
+    {
+      "case_id": "W006",
+      "true_primitive": "accumulation",
+      "predicted_primitive": "accumulation",
+      "winner_feature": "diff::market_shock-nominal_capacity",
+      "primary_outcome": "COMMIT_WRONG"
+    },
+    {
+      "case_id": "W007",
+      "true_primitive": "accumulation",
+      "predicted_primitive": "accumulation",
+      "winner_feature": "diff::market_shock-nominal_capacity",
+      "primary_outcome": "COMMIT_WRONG"
+    },
+    {
+      "case_id": "W008",
+      "true_primitive": "accumulation",
+      "predicted_primitive": "accumulation",
+      "winner_feature": "diff::incoming_orders-nominal_capacity",
+      "primary_outcome": "COMMIT_WRONG"
+    },
+    {
+      "case_id": "W009",
+      "true_primitive": "accumulation",
+      "predicted_primitive": "accumulation",
+      "winner_feature": "ratio::incoming_orders/nominal_capacity",
+      "primary_outcome": "COMMIT_CORRECT"
+    },
+    {
+      "case_id": "W010",
+      "true_primitive": "accumulation",
+      "predicted_primitive": "accumulation",
+      "winner_feature": "ratio::incoming_orders/nominal_capacity",
+      "primary_outcome": "COMMIT_CORRECT"
+    },
+    {
+      "case_id": "W011",
+      "true_primitive": "first_order_relaxation",
+      "predicted_primitive": "first_order_relaxation",
+      "winner_feature": "ratio::incoming_orders/nominal_capacity",
+      "primary_outcome": "COMMIT_CORRECT"
+    },
+    {
+      "case_id": "W012",
+      "true_primitive": "first_order_relaxation",
+      "predicted_primitive": "first_order_relaxation",
+      "winner_feature": "diff::incoming_orders-nominal_capacity",
+      "primary_outcome": "COMMIT_WRONG"
+    },
+    {
+      "case_id": "W013",
+      "true_primitive": "first_order_relaxation",
+      "predicted_primitive": "first_order_relaxation",
+      "winner_feature": "diff::incoming_orders-nominal_capacity",
+      "primary_outcome": "COMMIT_WRONG"
+    },
+    {
+      "case_id": "W014",
+      "true_primitive": "first_order_relaxation",
+      "predicted_primitive": "pipeline_delay",
+      "winner_feature": "diff::market_shock-nominal_capacity",
+      "primary_outcome": "COMMIT_WRONG"
+    },
+    {
+      "case_id": "W015",
+      "true_primitive": "first_order_relaxation",
+      "predicted_primitive": "self_reinforcing",
+      "winner_feature": "diff::incoming_orders-nominal_capacity",
+      "primary_outcome": "COMMIT_WRONG"
+    },
+    {
+      "case_id": "W016",
+      "true_primitive": "first_order_relaxation",
+      "predicted_primitive": "first_order_relaxation",
+      "winner_feature": "diff::incoming_orders-nominal_capacity",
+      "primary_outcome": "COMMIT_WRONG"
+    },
+    {
+      "case_id": "W017",
+      "true_primitive": "first_order_relaxation",
+      "predicted_primitive": "first_order_relaxation",
+      "winner_feature": "diff::incoming_orders-nominal_capacity",
+      "primary_outcome": "COMMIT_WRONG"
+    },
+    {
+      "case_id": "W018",
+      "true_primitive": "first_order_relaxation",
+      "predicted_primitive": "first_order_relaxation",
+      "winner_feature": "diff::market_shock-nominal_capacity",
+      "primary_outcome": "COMMIT_WRONG"
+    },
+    {
+      "case_id": "W019",
+      "true_primitive": "first_order_relaxation",
+      "predicted_primitive": "pipeline_delay",
+      "winner_feature": "diff::market_shock-nominal_capacity",
+      "primary_outcome": "COMMIT_WRONG"
+    },
+    {
+      "case_id": "W020",
+      "true_primitive": "first_order_relaxation",
+      "predicted_primitive": "first_order_relaxation",
+      "winner_feature": "ratio::incoming_orders/nominal_capacity",
+      "primary_outcome": "COMMIT_CORRECT"
+    },
+    {
+      "case_id": "W021",
+      "true_primitive": "self_reinforcing",
+      "predicted_primitive": "self_reinforcing",
+      "winner_feature": "ratio::incoming_orders/nominal_capacity",
+      "primary_outcome": "COMMIT_CORRECT"
+    },
+    {
+      "case_id": "W022",
+      "true_primitive": "self_reinforcing",
+      "predicted_primitive": "first_order_relaxation",
+      "winner_feature": "diff::market_shock-nominal_capacity",
+      "primary_outcome": "COMMIT_WRONG"
+    },
+    {
+      "case_id": "W023",
+      "true_primitive": "self_reinforcing",
+      "predicted_primitive": "self_reinforcing",
+      "winner_feature": "ratio::incoming_orders/nominal_capacity",
+      "primary_outcome": "COMMIT_CORRECT"
+    },
+    {
+      "case_id": "W024",
+      "true_primitive": "self_reinforcing",
+      "predicted_primitive": "self_reinforcing",
+      "winner_feature": "diff::incoming_orders-nominal_capacity",
+      "primary_outcome": "COMMIT_WRONG"
+    },
+    {
+      "case_id": "W025",
+      "true_primitive": "self_reinforcing",
+      "predicted_primitive": "self_reinforcing",
+      "winner_feature": "diff::incoming_orders-nominal_capacity",
+      "primary_outcome": "COMMIT_WRONG"
+    },
+    {
+      "case_id": "W026",
+      "true_primitive": "self_reinforcing",
+      "predicted_primitive": "self_reinforcing",
+      "winner_feature": "diff::market_shock-nominal_capacity",
+      "primary_outcome": "COMMIT_WRONG"
+    },
+    {
+      "case_id": "W027",
+      "true_primitive": "self_reinforcing",
+      "predicted_primitive": "self_reinforcing",
+      "winner_feature": "diff::incoming_orders-nominal_capacity",
+      "primary_outcome": "COMMIT_WRONG"
+    },
+    {
+      "case_id": "W028",
+      "true_primitive": "self_reinforcing",
+      "predicted_primitive": "self_reinforcing",
+      "winner_feature": "diff::market_shock-nominal_capacity",
+      "primary_outcome": "COMMIT_WRONG"
+    },
+    {
+      "case_id": "W029",
+      "true_primitive": "self_reinforcing",
+      "predicted_primitive": "self_reinforcing",
+      "winner_feature": "ratio::incoming_orders/nominal_capacity",
+      "primary_outcome": "COMMIT_CORRECT"
+    },
+    {
+      "case_id": "W030",
+      "true_primitive": "self_reinforcing",
+      "predicted_primitive": "self_reinforcing",
+      "winner_feature": "ratio::incoming_orders/nominal_capacity",
+      "primary_outcome": "COMMIT_CORRECT"
+    },
+    {
+      "case_id": "W031",
+      "true_primitive": "pipeline_delay",
+      "predicted_primitive": "pipeline_delay",
+      "winner_feature": "ratio::incoming_orders/nominal_capacity",
+      "primary_outcome": "COMMIT_CORRECT"
+    },
+    {
+      "case_id": "W032",
+      "true_primitive": "pipeline_delay",
+      "predicted_primitive": "pipeline_delay",
+      "winner_feature": "diff::market_shock-nominal_capacity",
+      "primary_outcome": "COMMIT_WRONG"
+    },
+    {
+      "case_id": "W033",
+      "true_primitive": "pipeline_delay",
+      "predicted_primitive": "pipeline_delay",
+      "winner_feature": "ratio::incoming_orders/nominal_capacity",
+      "primary_outcome": "COMMIT_CORRECT"
+    },
+    {
+      "case_id": "W034",
+      "true_primitive": "pipeline_delay",
+      "predicted_primitive": "pipeline_delay",
+      "winner_feature": "ratio::incoming_orders/nominal_capacity",
+      "primary_outcome": "COMMIT_CORRECT"
+    },
+    {
+      "case_id": "W035",
+      "true_primitive": "pipeline_delay",
+      "predicted_primitive": "pipeline_delay",
+      "winner_feature": "ratio::incoming_orders/nominal_capacity",
+      "primary_outcome": "COMMIT_CORRECT"
+    },
+    {
+      "case_id": "W036",
+      "true_primitive": "pipeline_delay",
+      "predicted_primitive": "pipeline_delay",
+      "winner_feature": "diff::incoming_orders-nominal_capacity",
+      "primary_outcome": "COMMIT_WRONG"
+    },
+    {
+      "case_id": "W037",
+      "true_primitive": "pipeline_delay",
+      "predicted_primitive": "pipeline_delay",
+      "winner_feature": "diff::market_shock-nominal_capacity",
+      "primary_outcome": "COMMIT_WRONG"
+    },
+    {
+      "case_id": "W038",
+      "true_primitive": "pipeline_delay",
+      "predicted_primitive": "pipeline_delay",
+      "winner_feature": "diff::incoming_orders-nominal_capacity",
+      "primary_outcome": "COMMIT_WRONG"
+    },
+    {
+      "case_id": "W039",
+      "true_primitive": "pipeline_delay",
+      "predicted_primitive": "self_reinforcing",
+      "winner_feature": "ratio::incoming_orders/nominal_capacity",
+      "primary_outcome": "COMMIT_WRONG"
+    },
+    {
+      "case_id": "W040",
+      "true_primitive": "pipeline_delay",
+      "predicted_primitive": "pipeline_delay",
+      "winner_feature": "ratio::incoming_orders/nominal_capacity",
+      "primary_outcome": "COMMIT_CORRECT"
+    }
+  ]
+}
