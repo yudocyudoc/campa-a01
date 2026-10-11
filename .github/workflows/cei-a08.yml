@@ -1,0 +1,47 @@
+name: CEI | A08 generalized adversaries
+
+on:
+  pull_request:
+    paths:
+      - 'experiments/A08/**'
+      - '.github/workflows/cei-a08.yml'
+      - 'tests/test_a08.py'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  generalized-adversaries:
+    name: A08 | c-free and p-free families
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      MPLBACKEND: Agg
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install exact stock-flow engine and optimizers
+        run: |
+          python -m pip install "setuptools<82" "jedi>=0.16" "bptk-py[plotting]==3.2.0" "networkx>=3,<4" "scipy>=1.11,<2"
+      - name: Test precommitted design
+        run: python -m unittest discover -s tests -p 'test_a08.py' -v
+      - name: Run 2-family training and full 17-probe adjudication
+        run: python experiments/A08/experiment.py --out results/A08
+      - name: Validate artifacts and JSON
+        run: |
+          python -m json.tool results/A08/summary.json > /dev/null
+          python -m json.tool results/A08/design_before_holdout.json > /dev/null
+      - name: Save evidence even if optimization fails
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: a08-generalized-adversaries-results
+          path: results/A08/
+          if-no-files-found: warn
+          retention-days: 30
