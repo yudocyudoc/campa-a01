@@ -37,6 +37,7 @@ def evaluate(public:Path,analyst:Path,out:Path):
             if path.is_file() and digest(path)!=digest(temp_public/path.name):
                 raise ValueError(f"Replay of public observations changed: seed={seed}, file={path.name}")
         report_path=analyst/str(seed)
+        training_report=json.loads((report_path/"analyst_report.json").read_text(encoding="utf-8"))
         if digest(report_path/"analyst_report.json")!=dmap[seed]["report_sha256"]:
             raise ValueError("Analyst report was altered")
         if digest(report_path/"predicted_all_holdouts.csv")!=dmap[seed]["predictions_sha256"]:
@@ -53,9 +54,9 @@ def evaluate(public:Path,analyst:Path,out:Path):
                 "seed":seed,
                 "condition":condition,
                 "decision":selected,
-                "training_rms_diff_c":adjud["results"][condition].get("unused_train_diff",fit["rms_diff_c"] if condition=="noisy_1pct" else None),
-                "training_rms_ratio_p":fit["rms_ratio_p"] if condition=="noisy_1pct" else None,
-                "training_margin":fit["training_margin"] if condition=="noisy_1pct" else None,
+                "training_rms_diff_c":training_report["noise_conditions"][condition]["fit_by_family"]["diff_c"]["train_rms"],
+                "training_rms_ratio_p":training_report["noise_conditions"][condition]["fit_by_family"]["ratio_p"]["train_rms"],
+                "training_margin":training_report["noise_conditions"][condition]["training_rms_gap"],
                 "holdout_rms_diff_c":x["holdout_rms_fraction"]["diff_c"],
                 "holdout_rms_ratio_p":x["holdout_rms_fraction"]["ratio_p"],
                 "holdout_rms_nominal_baseline":x["holdout_rms_fraction"]["baseline"],
