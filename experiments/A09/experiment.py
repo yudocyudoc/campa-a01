@@ -89,7 +89,7 @@ def simulate_internal(probe: dict, model: str):
             **cfg
         )
     df, backend = run_model(
-        instance, FIELDS[model], manager_name="a09_"+model
+        instance, list(FIELDS[model]), manager_name="a09_"+model
     )
     if len(df)!=EXPECTED_TIMES:
         raise ValueError(f"Wrong time grid {model}/{probe['id']} ({len(df)})")
