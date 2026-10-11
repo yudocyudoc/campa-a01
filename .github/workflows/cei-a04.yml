@@ -1,0 +1,52 @@
+name: CEI | A04 auditoria A1
+
+on:
+  pull_request:
+    paths:
+      - 'experiments/A04/**'
+      - '.github/workflows/cei-a04.yml'
+      - 'tests/test_a04.py'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: a04-a1-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  reproduce-a1:
+    name: A04 | 12-world identifiability audit
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    env:
+      MPLBACKEND: Agg
+      PYTHONUNBUFFERED: '1'
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      CEI_A04_RESULTS_DIR: results/A04
+    steps:
+      - name: Checkout public laboratory
+        uses: actions/checkout@v4
+      - name: Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install original experiment dependencies
+        run: |
+          python -m pip install "setuptools<82" "jedi>=0.16" "bptk-py[plotting]==3.2.0" "networkx>=3,<4"
+      - name: Verify historical-output adjudicator
+        run: python -m unittest discover -s tests -p 'test_a04.py' -v
+      - name: Reproduce archived A1 diagnostics
+        run: python experiments/A04/a1_source_reproduction.py
+      - name: Compare against executed historic audit
+        run: python experiments/A04/verify_reproduction.py --input results/A04
+      - name: Save diagnostic evidence even if mismatched
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: a04-a1-identifiability-diagnostics
+          path: results/A04/
+          if-no-files-found: warn
+          retention-days: 30
