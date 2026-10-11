@@ -110,7 +110,7 @@ def select_policy(predictions:dict[float,list[dict]],selected_family:str)->float
 
 
 def rms_errors(actual:list[dict],forecast_rows:list[dict])->dict:
-    if len(actual)!=len(forecast_rows)!=HORIZON_T-DECISION_T+1:
+    if len(actual)!=len(forecast_rows) or len(actual)!=HORIZON_T-DECISION_T+1:
         raise ValueError("Wrong forecast length")
     return {v:math.sqrt(sum(
         ((float(a[v])-float(p[v]))/SCALING[v])**2
