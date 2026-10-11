@@ -9,7 +9,7 @@ import math
 
 OBSERVED=("t","incoming_orders","nominal_capacity","effective_capacity",
           "backlog","cancellations","customer_base","cash")
-INPUTS=("t","incoming_orders","nominal_capacity")
+INPUTS=("t","incoming_orders","nominal_capacity","initial_effective_capacity")
 TARGET="effective_capacity"
 MIN_CAPACITY_FRACTION=0.40  # Externally stipulated business rule, not inferred latent state
 TRAIN_COUNT=5
@@ -68,11 +68,12 @@ def simulate_fraction(rows:list[dict],params,kind:str)->list[float]:
     if any(abs(t-i)>1e-7 for i,t in enumerate(times)):
         raise ValueError("Missing/invalid time grid")
     first=rows[0]
-    if TARGET not in first:
-        raise ValueError("Observed initial capacity required; it is separately supplied in holdout input")
+    if TARGET not in first and "initial_effective_capacity" not in first:
+        raise ValueError("Observed initial capacity required as initial condition")
     k0=float(first["nominal_capacity"])
     if k0<=0: raise ValueError("Nonpositive initial capacity")
-    y0=float(first[TARGET])/k0
+    initial=first.get("initial_effective_capacity",first.get(TARGET))
+    y0=float(initial)/k0
     if not math.isfinite(y0) or y0>1+1e-7 or y0<MIN_CAPACITY_FRACTION-1e-7:
         raise ValueError("Invalid observable initial capacity ratio")
     state=max(0.,1-y0)
