@@ -87,7 +87,7 @@ def run_experiment(output_dir: Path) -> dict:
         "horizon_days": HORIZON_DAYS,
         "dt_days": DT_DAYS,
         "parameters": PARAMETERS,
-        "mechanisms": MECHANISMS,
+        "mechanisms": list(MECHANISMS),
         "conditions": CONDITIONS,
     }
     manifest = {
