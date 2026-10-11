@@ -1,0 +1,53 @@
+name: CEI | A07 adversario refit
+
+on:
+  pull_request:
+    paths:
+      - 'experiments/A07/**'
+      - '.github/workflows/cei-a07.yml'
+      - 'tests/test_a07.py'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: a07-refit-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  adversarial-refit:
+    name: A07 | ratio vs reoptimized difference
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      MPLBACKEND: Agg
+      PYTHONUNBUFFERED: '1'
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install original G5 engine and deterministic optimizer
+        run: |
+          python -m pip install "setuptools<82" "jedi>=0.16" "bptk-py[plotting]==3.2.0" "networkx>=3,<4" "scipy>=1.11,<2"
+      - name: Validate study design
+        run: python -m unittest discover -s tests -p 'test_a07.py' -v
+      - name: Run A07 two-arm train-versus-holdout adversarial search
+        run: python experiments/A07/experiment.py --out results/A07
+      - name: Validate both JSON manifests
+        run: |
+          python -m json.tool results/A07/summary.json > /dev/null
+          python -m json.tool results/A07/design_frozen_before_holdout.json > /dev/null
+      - name: Preserve all evidence even if incomplete
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: a07-adversarial-refit-results
+          path: results/A07/
+          if-no-files-found: warn
+          retention-days: 30
