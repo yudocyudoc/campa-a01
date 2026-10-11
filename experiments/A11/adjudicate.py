@@ -77,6 +77,26 @@ def adjudicate(public:Path,analyst:Path,out:Path):
                     "pred_cash_t24":predictions[(arm,family,k,float(HORIZON_T))]["cash"],
                     "true_orders_t24":rows[-1]["incoming_orders"],
                     "pred_orders_t24":predictions[(arm,family,k,float(HORIZON_T))]["incoming_orders"]})
+    # Mechanism-specific policy choices are a built-in negative control:
+    # if BOTH families recommend the same K, correct policy cannot be used
+    # as evidence of incremental mechanistic identification.
+    controls={}
+    for arm in NOISE_ARMS:
+        counterfactual_preferences={}
+        for family in ("diff_c","ratio_p"):
+            counterfactual_preferences[family]=min(
+                OPTIONS,key=lambda k:(
+                  -predictions[(arm,family,k,float(HORIZON_T))]["cash"],k
+                ))
+        controls[arm]={
+            "preferred_policy_by_family":counterfactual_preferences,
+            "policy_depends_on_mechanism_within_library":(
+                counterfactual_preferences["diff_c"]!=counterfactual_preferences["ratio_p"]),
+            "mechanism_discriminates_capacity_policy":False
+            if counterfactual_preferences["diff_c"]==counterfactual_preferences["ratio_p"]
+            else True,
+            "scientific_note":"If both families choose the same policy, correct action does not establish a marginal CEI mechanistic advantage."
+        }
     decisions={}
     for arm in NOISE_ARMS:
         choice=freeze["selected_policies_by_arm"][arm]
@@ -119,6 +139,7 @@ def adjudicate(public:Path,analyst:Path,out:Path):
         "oracle_best_ex_post":oracle_best,
         "true_policy_terminal_cash":{str(k):actuals[k][-1]["cash"] for k in OPTIONS},
         "decisions":decisions,
+        "mechanism_policy_negative_control":controls,
         "scientific_claim":"PROSPECTIVE_SCENARIO_PREDICTION_WITH_STIPULATED_BUSINESS_MODEL",
         "limits":[
             "All non-response business feedback equations and coefficients are supplied to the analyst.",
@@ -128,6 +149,7 @@ def adjudicate(public:Path,analyst:Path,out:Path):
             "Future orders are NEVER given to the analyst; they are forecast from endogenous customer feedback.",
             "Regret compares only four predefined capacities on terminal cash, not general strategic optimality.",
             "The future WORLD is noiseless; noise on historical training observations only.",
+            "Both candidate families may rank the same capacity policy, in which case a correct decision does not evidence mechanistic value-add.",
         ],
         "sha256":{
             "world_policy_outcomes.csv":sha(true_file),
