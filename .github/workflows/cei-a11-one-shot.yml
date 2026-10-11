@@ -1,0 +1,90 @@
+# One-time evidence archivist. Deleted immediately after successful verification.
+name: CEI | A11 one-shot evidence archive
+
+on:
+  push:
+    branches:
+      - exp/A11-prospective-closedloop
+    paths:
+      - '.github/workflows/cei-a11-one-shot.yml'
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  preserve:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Fetch original successful three-stage artifacts
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p experiments/A11/evidence/{public,analyst,adjudication}
+          gh run download 38183774855 --repo "$GITHUB_REPOSITORY" --name a11-predecision-only --dir experiments/A11/evidence/public
+          gh run download 38183774855 --repo "$GITHUB_REPOSITORY" --name a11-frozen-prospective-forecasts --dir experiments/A11/evidence/analyst
+          gh run download 38183774855 --repo "$GITHUB_REPOSITORY" --name a11-postfreeze-world-results --dir experiments/A11/evidence/adjudication
+      - name: Verify all outputs and cross-file SHA256 chains
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib,json,csv
+          root=Path("experiments/A11/evidence")
+          def hashfile(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+          def j(p):return json.loads(p.read_text(encoding="utf-8"))
+          pub=j(root/"public/manifest.json")
+          anal=j(root/"analyst/analyst_freeze.json")
+          adjud=j(root/"adjudication/adjudication.json")
+          assert pub["experiment"]==anal["experiment"]==adjud["experiment"]=="A11"
+          assert pub["future_orders_in_public_data"] is False
+          assert pub["future_outcomes_in_public_data"] is False
+          assert anal["phase"]=="FORECASTS_FROZEN_BEFORE_ANY_INTERVENTION_WORLD"
+          assert anal["NO_FUTURE_ORDERS_READ"] is True
+          assert adjud["status"]=="ADJUDICATED"
+          for name,expected in pub["public_file_sha256"].items():
+              assert hashfile(root/"public"/name)==expected,(name,"public")
+          assert hashfile(root/"public/manifest.json")==anal["public_manifest_sha256"]
+          assert hashfile(root/"public/predecision_snapshot.csv")==anal["snapshot_sha256"]
+          assert hashfile(root/"analyst/closedloop_forecasts.csv")==anal["forecast_sha256"]
+          assert hashfile(root/"analyst/training_optimizer_attempts.json")==anal["attempts_sha256"]
+          for name,expected in adjud["sha256"].items():
+              path=(root/"analyst/analyst_freeze.json") if name=="analyst_freeze.json" else (root/"adjudication"/name)
+              assert hashfile(path)==expected,(name,"adjudicated")
+          with (root/"adjudication/forecast_error_by_policy.csv").open(newline="") as fp:
+              assert sum(1 for _ in csv.DictReader(fp))==16
+          assert adjud["decisions"]["noiseless"]["chosen_policy_before_oracle"] in pub["policy_options"]
+          assert adjud["decisions"]["noisy_1pct"]["chosen_policy_before_oracle"] in pub["policy_options"]
+          assert all(x in adjud["mechanism_policy_negative_control"]
+                     for x in ("noiseless","noisy_1pct"))
+          hashes={}
+          for folder in ("public","analyst","adjudication"):
+              path=root/folder
+              hashes[folder]={str(p.relative_to(path)):hashfile(p)
+                  for p in sorted(path.rglob("*")) if p.is_file()}
+          audit={
+              "experiment":"A11","source_run_id":38183774855,
+              "scientific_commit":"f9f8fba38873e7397f8e11d2089a7c4f279a9c48",
+              "source":"original CI artifacts, extracted unchanged",
+              "all_crossfile_sha256_verified":True,
+              "no_future_orders_shared_to_analyst":True,
+              "sha256_by_stage":hashes,
+          }
+          (Path("experiments/A11/evidence_manifest.json")).write_text(
+              json.dumps(audit,indent=2,sort_keys=True)+"\n",encoding="utf-8")
+          print("A11_ARCHIVE_VERIFIED",{k:len(v) for k,v in hashes.items()})
+          PY
+      - name: Commit evidence to the experimental branch
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -f experiments/A11/evidence/ experiments/A11/evidence_manifest.json
+          if git diff --cached --quiet; then
+            echo 'Already archived.'
+          else
+            git commit -m 'archive(A11): preserve original prospective decisions and post-freeze oracle with SHA256'
+            git push origin 'HEAD:refs/heads/exp/A11-prospective-closedloop'
+          fi
