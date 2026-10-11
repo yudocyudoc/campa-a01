@@ -28,4 +28,4 @@ La simulación sigue recibiendo pedidos futuros observados y endógenos. Por tan
 
 ## Evidencia
 
-Los archivos de entrada, predicciones congeladas, resultados de adjudicación y etiquetas regeneradas se conservan como artefactos de GitHub Actions. Una vez verificadas las ejecuciones, los archivaremos en el repositorio con SHA-256 para que no caduquen.
+Los archivos originales de datos públicos, predicciones congeladas y resultados con etiquetas regeneradas están archivados de forma permanente en [\`evidence/\`](evidence/) con [\`evidence_manifest.json\`](evidence_manifest.json). Se verificaron SHA-256 de los 164 archivos (41 públicos, 31 del analista y 92 de adjudicación). El workflow temporal con permiso de escritura fue retirado después de la copia.
