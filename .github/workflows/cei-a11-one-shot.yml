@@ -1,4 +1,5 @@
 # One-time evidence archivist. Deleted immediately after successful verification.
+# Rerun after science job 38183774855 successfully uploaded all three original artifacts.
 name: CEI | A11 one-shot evidence archive
 
 on:
