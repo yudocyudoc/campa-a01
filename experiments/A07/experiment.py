@@ -18,10 +18,10 @@ import sys
 import numpy as np
 from scipy.optimize import least_squares
 
-A06 = Path(__file__).resolve().parents[1] / "A06"
-sys.path.insert(0, str(A06))
-from g5_model_core import DEFAULT_PARAMS, WORLD_CASES, simulate_world_case, simulate_repair  # noqa: E402
-from design import (  # noqa: E402
+ROOT = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(ROOT))
+from experiments.A06.g5_model_core import DEFAULT_PARAMS, WORLD_CASES, simulate_world_case, simulate_repair  # noqa: E402
+from experiments.A07.design import (  # noqa: E402
     BOUNDS, HOLDOUTS, K0, MAX_NFEV_PER_START, MAX_SELECTED,
     NUMERICAL_FLOOR, PRACTICAL_GAP, TRAINING,
     select_diverse_holdouts, validate_disjointness,
