@@ -8,7 +8,7 @@ from pathlib import Path
 
 BASE = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(BASE / "experiments" / "A03"))
-from verify_reproduction import (  # noqa: E402
+from experiments.A03.verify_reproduction import (  # noqa: E402
     CASE_FILES, EXPECTED_COUNTS, NUMERIC_ANCHORS,
     REFERENCE_PATH, TOP_FILES, verify,
 )

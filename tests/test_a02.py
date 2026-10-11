@@ -6,7 +6,7 @@ import unittest
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "experiments" / "A02"))
-from verify_reproduction import CHECKS, EXPECTED, EXPECTED_OUTPUTS, validate
+from experiments.A02.verify_reproduction import CHECKS, EXPECTED, EXPECTED_OUTPUTS, validate
 
 
 def write_data(directory, *, mismatch=False, missing_gate=False):
