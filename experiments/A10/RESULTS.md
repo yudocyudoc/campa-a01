@@ -3,6 +3,7 @@
 **Referencia ejecutada:** [GitHub Actions 38126170978](https://github.com/yudocyudoc/campa-a01/actions/runs/38126170978) (4 jobs: productor, analista en checkout restringido, adjudicador y pruebas).  
 **Condiciones de observación:** sin ruido y con ruido gaussiano SD=1% de capacidad nominal solo en `effective_capacity`, acotado a límites físicos; semilla `20261011`.  
 **Diseño:** W016, cinco escenarios de entrenamiento, 17 de evaluación, 25 meses por escenario; la capacidad efectiva posterior a t0 de holdout **no** estuvo disponible al analista.  
+**Evidencia permanente:** [`evidence/`](evidence/) (12 archivos originales) y [`evidence_manifest.json`](evidence_manifest.json), SHA-256 verificado a partir de los cuatro artefactos de la corrida exitosa. El workflow temporal de archivado fue retirado.  
 **Estado:** `COMPLETED` en el pipeline y en la adjudicación. Los resultados negativos o abstenciones estaban permitidos, no se forzó una decisión.
 
 ## Resultados: ajuste TRAIN frente a holdouts sellados
