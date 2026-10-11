@@ -1,0 +1,144 @@
+name: CEI | A10 observable analyst isolation
+
+on:
+  pull_request:
+    paths:
+      - 'experiments/A10/**'
+      - 'tests/test_a10.py'
+      - '.github/workflows/cei-a10.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  public-data-producer:
+    name: A10 | producer with generator access
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    env:
+      MPLBACKEND: Agg
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install generation engine
+        run: |
+          python -m pip install "setuptools<82" "jedi>=0.16" "bptk-py[plotting]==3.2.0" "networkx>=3,<4" "scipy>=1.11,<2"
+      - name: Pack only allowed business measurements
+        run: python -m experiments.A10.packager --public results/A10/public --sealed results/A10/sealed
+      - name: Publish observable data for isolated analyst
+        uses: actions/upload-artifact@v4
+        with:
+          name: a10-public-observations
+          path: results/A10/public/
+          retention-days: 30
+      - name: Publish sealed labels for final adjudicator only
+        uses: actions/upload-artifact@v4
+        with:
+          name: a10-sealed-labels
+          path: results/A10/sealed/
+          retention-days: 30
+
+  observational-analyst:
+    name: A10 | sparse checkout and no holdout outcomes
+    needs: public-data-producer
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - name: Sparse checkout ONLY analyst and observable contract
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            experiments/A10/analyst.py
+            experiments/A10/contract.py
+          sparse-checkout-cone-mode: false
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install optimizer (no G5 world generator)
+        run: python -m pip install "numpy>=1.24,<3" "scipy>=1.11,<2"
+      - name: Download ONLY public observable inputs
+        uses: actions/download-artifact@v4
+        with:
+          name: a10-public-observations
+          path: results/A10/public
+      - name: Enforce analyst file-system and import boundary
+        run: |
+          test ! -e experiments/A08/g5_extended_core.py
+          test ! -e experiments/A09/evidence/internal_trajectories.csv
+          test ! -e results/A10/sealed
+          test -e experiments/A10/contract.py
+          test -e experiments/A10/analyst.py
+      - name: Fit on training and predict all sealed outcomes
+        run: python -m experiments.A10.analyst --public results/A10/public --out results/A10/analyst
+      - name: Upload frozen predictions and decisions
+        uses: actions/upload-artifact@v4
+        with:
+          name: a10-analyst-predictions
+          path: results/A10/analyst/
+          retention-days: 30
+
+  independent-adjudicator:
+    name: A10 | join frozen predictions with held-out outcomes
+    needs: [public-data-producer, observational-analyst]
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+    steps:
+      - name: Sparse checkout ONLY adjudication and observable contract
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            experiments/A10/adjudicate.py
+            experiments/A10/contract.py
+          sparse-checkout-cone-mode: false
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install "numpy>=1.24,<3"
+      - uses: actions/download-artifact@v4
+        with:
+          name: a10-public-observations
+          path: results/A10/public
+      - uses: actions/download-artifact@v4
+        with:
+          name: a10-analyst-predictions
+          path: results/A10/analyst
+      - uses: actions/download-artifact@v4
+        with:
+          name: a10-sealed-labels
+          path: results/A10/sealed
+      - name: Read sealed outcomes only AFTER analyst artifact is frozen
+        run: |
+          python -m experiments.A10.adjudicate --public results/A10/public --sealed results/A10/sealed --analyst results/A10/analyst --out results/A10/adjudicated
+      - name: Preserve scientific evaluation, including abstentions
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: a10-sealed-adjudication
+          path: results/A10/adjudicated/
+          if-no-files-found: warn
+          retention-days: 30
+
+  offline-tests:
+    name: A10 | local boundary and dynamic regression tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m unittest discover -s tests -p 'test_a10.py' -v
