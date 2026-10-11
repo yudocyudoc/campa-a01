@@ -1,0 +1,32 @@
+{
+  "source_run_id": 38122052685,
+  "source_commit": "9e42b0cb6ee4c50b23df3cfecc49e7597afc73e7",
+  "source_artifact_id": 11694883299,
+  "source_artifact_zip_sha256": "83afa770f087b9da6d47f015687637f7af3c29fd837304e31b51519c4822138b",
+  "model": "W016 G5 first_order_relaxation",
+  "score_from_month": 8,
+  "diff_c": {
+    "tau": -24.752720142188714,
+    "rate": 0.6257397729344485,
+    "gain": 0.014456552279360603,
+    "shape": 1.0070633038359988,
+    "train_rms": 0.016932807979581303,
+    "holdout_median_rms": 0.009338569193045824,
+    "holdout_max_rms": 0.33888159423566333,
+    "holdout_above_0_01": 7
+  },
+  "ratio_p": {
+    "tau": 0.8043657644784503,
+    "rate": 0.6341171854167389,
+    "gain": 1.7582499650790158,
+    "shape": 0.9999999999999998,
+    "train_rms": 4.681212562004957e-15,
+    "holdout_median_rms": 2.5156766927257342e-15,
+    "holdout_max_rms": 7.848326516001765e-15,
+    "holdout_above_0_01": 0
+  },
+  "notes": [
+    "These fit parameters are post hoc from A08, not optimized in A09",
+    "A09 audits internal oracle-only states; it does not select probes or claim discovery"
+  ]
+}
