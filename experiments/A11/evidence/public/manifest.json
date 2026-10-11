@@ -1,0 +1,36 @@
+{
+  "experiment": "A11",
+  "data_boundary": "Historical training and predecision business stocks ONLY",
+  "snapshot_time": 8,
+  "future_orders_in_public_data": false,
+  "future_outcomes_in_public_data": false,
+  "policy_options": [
+    90.0,
+    115.0,
+    145.0,
+    180.0
+  ],
+  "baseline_capacity": 115.0,
+  "known_market_shock_from_t8": 50.0,
+  "business_accounting_assumptions_known": {
+    "base_order_rate": 0.09,
+    "acquisition_per_marketing_unit": 8.0,
+    "marketing_intensity": 1.0,
+    "cancel_rate": 0.06,
+    "base_churn": 2.0,
+    "customer_loss_per_cancel": 0.4,
+    "price": 100.0,
+    "variable_cost_per_order": 50.0,
+    "fixed_cost": 4000.0,
+    "marketing_cost_per_unit": 800.0,
+    "capacity_cost_per_extra_unit": 10.0,
+    "collection_delay": 2.0,
+    "minimum_fraction": 0.4
+  },
+  "source_training": "Historical A10 public evidence: 5 regimes, 25 observations each",
+  "public_file_sha256": {
+    "predecision_snapshot.csv": "68f0dfa781a4a614a0884c5f725946e5b191de3a78f572f729d0014ba856f7bd",
+    "train_noiseless.csv": "94c93ef4057e2f03b7b0b185a09bc93410a9514a3bb0061c01aca8ae7006ab01",
+    "train_noisy_1pct.csv": "c956918b90197985f984c9b4da7ecf30e7f6e0cd40f499f8e77e154681bc1839"
+  }
+}
