@@ -1,0 +1,72 @@
+# One-time archival action restricted to the investigator's own A09 branch.
+# After evidence is committed, this workflow will be removed from the PR.
+name: CEI | One-shot evidence preservation
+
+on:
+  push:
+    branches:
+      - exp/A09-regime-observability
+    paths:
+      - '.github/workflows/cei-one-shot-evidence.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  preserve:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Download source evidence from immutable successful runs
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p experiments/A07/evidence experiments/A08/evidence experiments/A09/evidence
+          gh run download 38119372061 --repo "$GITHUB_REPOSITORY" --name a07-adversarial-refit-results --dir experiments/A07/evidence
+          gh run download 38122052685 --repo "$GITHUB_REPOSITORY" --name a08-generalized-adversaries-results --dir experiments/A08/evidence
+          gh run download 38124252708 --repo "$GITHUB_REPOSITORY" --name a09-conditional-regime-audit --dir experiments/A09/evidence
+      - name: Verify source SHA256 internal manifest and write permanent provenance
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib,json
+          archived = [
+              ("A07",38119372061, "files_sha256"),
+              ("A08",38122052685, "files_sha256"),
+              ("A09",38124252708, "file_sha256"),
+          ]
+          manifest={"schema":"CEI evidence archive v1","source":"GitHub Actions extracted files, not rerun or rewritten","experiments":{}}
+          for name,run,key in archived:
+              base=Path("experiments")/name/"evidence"
+              summary=json.loads((base/"summary.json").read_text())
+              declared=summary.get(key)
+              if not isinstance(declared,dict) or not declared:
+                  raise RuntimeError("Missing original checksums: "+name)
+              for filename,expected in declared.items():
+                  p=base/filename
+                  actual=hashlib.sha256(p.read_bytes()).hexdigest()
+                  if actual!=expected:
+                      raise RuntimeError(f"Hash mismatch {p}: {actual} != {expected}")
+              files={}
+              for p in sorted(base.rglob("*")):
+                  if p.is_file():
+                      files[str(p.relative_to(base))]=hashlib.sha256(p.read_bytes()).hexdigest()
+              manifest["experiments"][name]={"workflow_run":run,"sha256":files}
+          target=Path("experiments/A09/evidence_manifest.json")
+          target.write_text(json.dumps(manifest,indent=2,sort_keys=True)+"\n")
+          print("ARCHIVE_VERIFIED",[(k,len(v["sha256"])) for k,v in manifest["experiments"].items()])
+          PY
+      - name: Commit evidence to experiment branch
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -f experiments/A07/evidence/ experiments/A08/evidence/ experiments/A09/evidence/ experiments/A09/evidence_manifest.json
+          if git diff --cached --quiet; then
+            echo 'Evidence already committed.'
+          else
+            git commit -m 'archive: preserve A07 A08 A09 raw evidence and original SHA256 manifest'
+            git push origin "HEAD:refs/heads/exp/A09-regime-observability"
+          fi
