@@ -230,10 +230,13 @@ def run(out: Path):
         # Retrospective common support, not a prospective probe selector:
         for a,b in zip(internal["world"],internal["diff_c"]):
             if (a["t"]>=8 and a["active_unclipped"] and b["active_unclipped"]):
-                if not math.isclose(a["demand"],b["demand"],abs_tol=1e-8):
-                    raise ValueError("Demand differs across structural candidates")
+                # Demand is endogenous through customer_base/churn in G5:
+                # WORLD and rival need not share identical incoming_orders.
+                # Do not silently treat observational inputs as exogenous.
                 witness.append({"partition":partition,"probe":probe["id"],"t":a["t"],
-                                "K":round(a["capacity"],7),"D":a["demand"]})
+                                "K":round(a["capacity"],7),"D":a["demand"],
+                                "D_rival":b["demand"],
+                                "endogenous_demand_gap":b["demand"]-a["demand"]})
 
     world_gain=float(WORLD["truth"]["degradation"])
     proof=cross_k_slope_obstruction([115.,145.],world_gain)
@@ -259,6 +262,10 @@ def run(out: Path):
         "obstruct inference from observed effective capacity."
     )
     proof["no_global_optimizer_or_new_world_generated"]=True
+    proof["demand_is_endogenous_in_G5"]=True
+    proof["max_endogenous_input_gap_in_joint_active_samples"]=max(
+        [abs(r["endogenous_demand_gap"]) for r in witness],default=0.0
+    )
 
     by_model={}
     for model in ("diff_c","ratio_p"):
