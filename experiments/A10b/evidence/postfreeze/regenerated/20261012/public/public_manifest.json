@@ -1,0 +1,36 @@
+{
+  "experiment": "A10",
+  "synthetic_observational_inputs": true,
+  "training_scenarios": 5,
+  "holdout_scenarios": 17,
+  "timestamps_per_scenario": 25,
+  "business_visible_columns": [
+    "t",
+    "incoming_orders",
+    "nominal_capacity",
+    "effective_capacity",
+    "backlog",
+    "cancellations",
+    "customer_base",
+    "cash"
+  ],
+  "analyst_holdout_columns": [
+    "t",
+    "incoming_orders",
+    "nominal_capacity",
+    "initial_effective_capacity"
+  ],
+  "outcome_withheld_after_initial_t0": true,
+  "noise_conditions": {
+    "noiseless": "no_noise",
+    "noisy_1pct": "effective_capacity only, Gaussian sd=1% nominal K, clipped to physical envelope"
+  },
+  "noise_seed": 20261012,
+  "known_operating_capacity_floor": 0.4,
+  "important_limit": "Holdout business inputs are endogenously produced by the underlying business system; scores are conditional reconstructions, not prospective intervention forecasts.",
+  "public_sha256": {
+    "train_noiseless.csv": "94c93ef4057e2f03b7b0b185a09bc93410a9514a3bb0061c01aca8ae7006ab01",
+    "train_noisy_1pct.csv": "b19a450a4906d3afde843f9e5f69ace07b0308d23a98b134158acb20d8c9b93f",
+    "holdout_inputs.csv": "c31868e60fecc909ae39977a28e06dda1f369eacb7f76d0d8016140502659b14"
+  }
+}

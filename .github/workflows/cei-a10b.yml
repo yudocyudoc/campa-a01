@@ -1,0 +1,141 @@
+name: CEI | A10b noise robustness and post-freeze regeneration
+
+on:
+  pull_request:
+    paths:
+      - 'experiments/A10b/**'
+      - 'tests/test_a10b.py'
+      - '.github/workflows/cei-a10b.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  public-producer:
+    name: A10b | public-only data (NO sealed outputs)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      MPLBACKEND: Agg
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install original G5 engine
+        run: python -m pip install "setuptools<82" "jedi>=0.16" "bptk-py[plotting]==3.2.0" "networkx>=3,<4" "scipy>=1.11,<2"
+      - name: Produce ten noise seeds, verify original A10 anchor
+        run: python -m experiments.A10b.public_batch --out results/A10b/public
+      - name: Ensure NO sealed label artifacts have been generated
+        run: |
+          test ! -e results/A10b/sealed
+          if find results/A10b/public -type f \( -name 'sealed_truth.json' -o -name 'holdout_labels_*' \) | grep -q .; then
+            echo "SEALED LABEL LEAK" && exit 1
+          fi
+      - uses: actions/upload-artifact@v4
+        with:
+          name: a10b-public-only
+          path: results/A10b/public/
+          if-no-files-found: error
+          retention-days: 30
+
+  isolated-analyst:
+    name: A10b | all seeds, no generator and no truth labels
+    needs: public-producer
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            experiments/A10/contract.py
+            experiments/A10/analyst.py
+            experiments/A10b/design.py
+            experiments/A10b/analyst_batch.py
+          sparse-checkout-cone-mode: false
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Optimizer only (no model generator)
+        run: python -m pip install "numpy>=1.24,<3" "scipy>=1.11,<2"
+      - uses: actions/download-artifact@v4
+        with:
+          name: a10b-public-only
+          path: results/A10b/public
+      - name: Enforce sparse checkout and no sealed artifact
+        run: |
+          test ! -e experiments/A08/g5_extended_core.py
+          test ! -e experiments/A10b/packager.py
+          test ! -e experiments/A10b/adjudicate_batch.py
+          test ! -e results/A10b/sealed
+          test ! -e results/A10b/adjudication
+      - name: Fit A10 unchanged for every seed and freeze decisions
+        run: python -m experiments.A10b.analyst_batch --public results/A10b/public --out results/A10b/analyst
+      - uses: actions/upload-artifact@v4
+        with:
+          name: a10b-frozen-analyst
+          path: results/A10b/analyst/
+          retention-days: 30
+
+  postfreeze-adjudicator:
+    name: A10b | FIRST generate holdout truth, then adjudicate
+    needs: [public-producer, isolated-analyst]
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      MPLBACKEND: Agg
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install G5 engine to regenerate truth post-freeze
+        run: python -m pip install "setuptools<82" "jedi>=0.16" "bptk-py[plotting]==3.2.0" "networkx>=3,<4" "scipy>=1.11,<2"
+      - uses: actions/download-artifact@v4
+        with:
+          name: a10b-public-only
+          path: results/A10b/public
+      - uses: actions/download-artifact@v4
+        with:
+          name: a10b-frozen-analyst
+          path: results/A10b/analyst
+      - name: Assert NO labels exist prior to post-freeze regeneration
+        run: |
+          test ! -e results/A10b/adjudication
+          test -f results/A10b/analyst/a10b_frozen_decisions.json
+          test ! -e results/A10b/sealed
+      - name: Regenerate truth, verify data hashes, adjudicate all ten seeds
+        run: python -m experiments.A10b.adjudicate_batch --public results/A10b/public --analyst results/A10b/analyst --out results/A10b/adjudication
+      - name: Validate summary and decision frequencies
+        run: python -m json.tool results/A10b/adjudication/A10b_summary.json > /dev/null
+      - name: Save all outcomes, including abstentions and any failures
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: a10b-postfreeze-evidence
+          path: results/A10b/adjudication/
+          if-no-files-found: warn
+          retention-days: 30
+
+  offline-tests:
+    name: A10b | frozen seeds, algebra, boundaries
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m unittest discover -s tests -p 'test_a10b.py' -v

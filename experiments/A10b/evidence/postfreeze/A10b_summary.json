@@ -1,0 +1,109 @@
+{
+  "experiment": "A10b",
+  "execution": "COMPLETED",
+  "seeds": [
+    20261011,
+    20261012,
+    20261013,
+    20261014,
+    20261015,
+    20261016,
+    20261017,
+    20261018,
+    20261019,
+    20261020
+  ],
+  "source_A10_model_and_training_rule": "UNCHANGED",
+  "noise_1pct_on_effective_capacity_only": true,
+  "labels_regenerated_after_analyst_freeze": true,
+  "all_seed_decisions_count": {
+    "ratio_p": 10,
+    "diff_c": 0,
+    "ABSTAIN_UNRESOLVED": 0
+  },
+  "training_margin": {
+    "min": 0.007597802006411773,
+    "median": 0.008961116204544577,
+    "max": 0.010069835117176306,
+    "mean": 0.008871061016883088,
+    "by_seed": {
+      "20261011": 0.00766297663191675,
+      "20261012": 0.010069835117176306,
+      "20261013": 0.007597802006411773,
+      "20261014": 0.009501308881036804,
+      "20261015": 0.008464726375613837,
+      "20261016": 0.008456418889403634,
+      "20261017": 0.009730902606231537,
+      "20261018": 0.009510158576127302,
+      "20261019": 0.009457506033475315,
+      "20261020": 0.008258975051437625
+    }
+  },
+  "holdout_rms_ratio_p": {
+    "min": 0.0071504826385021545,
+    "median": 0.008671021518427798,
+    "max": 0.009163572121905652,
+    "mean": 0.008344810403767765,
+    "by_seed": {
+      "20261011": 0.008622530592516383,
+      "20261012": 0.007842314972940866,
+      "20261013": 0.00729474154151758,
+      "20261014": 0.008719512444339213,
+      "20261015": 0.0071504826385021545,
+      "20261016": 0.009163572121905652,
+      "20261017": 0.007788493651601663,
+      "20261018": 0.008802947209920678,
+      "20261019": 0.008930728330732673,
+      "20261020": 0.009132780533700788
+    }
+  },
+  "holdout_rms_diff_c": {
+    "min": 0.018748338367430072,
+    "median": 0.020876088266117913,
+    "max": 0.02133581661788432,
+    "mean": 0.020591268805044992,
+    "by_seed": {
+      "20261011": 0.020498413053253194,
+      "20261012": 0.02109082547755088,
+      "20261013": 0.021071823212490466,
+      "20261014": 0.020812647826150558,
+      "20261015": 0.01941348753223112,
+      "20261016": 0.018748338367430072,
+      "20261017": 0.020817360835686884,
+      "20261018": 0.02093481569654894,
+      "20261019": 0.02133581661788432,
+      "20261020": 0.02118915943122348
+    }
+  },
+  "predicted_all_inactive_scenarios": {
+    "min": 7,
+    "median": 7.0,
+    "max": 7,
+    "mean": 7,
+    "by_seed": {
+      "20261011": 7,
+      "20261012": 7,
+      "20261013": 7,
+      "20261014": 7,
+      "20261015": 7,
+      "20261016": 7,
+      "20261017": 7,
+      "20261018": 7,
+      "20261019": 7,
+      "20261020": 7
+    }
+  },
+  "reported_success_if": "None; all ten seed outcomes are retained without threshold tuning",
+  "limitations": [
+    "This is still W016 with a known true nested candidate family; not blind causal discovery.",
+    "The same observed future endogenous orders remain available to the analyst in each holdout.",
+    "Noise changes capacity outcome measurements only, not order inputs or structural parameters.",
+    "Ten seeds provide a descriptive distribution, NOT significance or calibrated uncertainty.",
+    "Same TRAIN/HOLDOUT split and optimizer settings as A10; no evidence of cross-world generality.",
+    "The producer code is public but was absent in analyst checkout; separation is procedural."
+  ],
+  "source_artifact_sha256": {
+    "public_batch_manifest": "ca1d87704f1c65ea728aab61c3fc614fec253a2cb45edf0e239897bf27ecb72a",
+    "frozen_decisions": "95468c5968280c4f290f22616f186e0076b06b872f7254c1f8b6e9afcfd3d8b3"
+  }
+}

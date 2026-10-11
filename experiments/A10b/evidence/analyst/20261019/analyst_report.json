@@ -1,0 +1,346 @@
+{
+  "experiment": "A10",
+  "analysis_status": "COMPLETED",
+  "epistemic_claim": "CONDITIONAL_OBSERVABLE_INPUT_OUTPUT_COMPARISON_NOT_CAUSAL_DISCOVERY",
+  "analyst_has_no_WORLD_or_holdout_labels": true,
+  "known_source_limit": "Public repository historically contains the WORLD generator, but the analysis job has only A10 code and packaged data.",
+  "holdout_inputs_are_endogenous": true,
+  "models_use_conditional_orders_and_capacity_not_autonomous_forecasts": true,
+  "uses_no_hidden_variables": true,
+  "noise_conditions": {
+    "noiseless": {
+      "fit_by_family": {
+        "diff_c": {
+          "family": "diff_c",
+          "method": "TRF",
+          "start": "1",
+          "train_rms": 0.01582914073852998,
+          "nfev": 7,
+          "calls_including_jacobian": 35,
+          "success": true,
+          "params": [
+            -16.25200177143108,
+            0.6254945424005154,
+            0.013841890725307456,
+            0.9317350878254456
+          ]
+        },
+        "ratio_p": {
+          "family": "ratio_p",
+          "method": "TRF",
+          "start": "0",
+          "train_rms": 6.369001127777167e-13,
+          "nfev": 13,
+          "calls_including_jacobian": 61,
+          "success": true,
+          "params": [
+            0.8043657644788427,
+            0.6341171854167286,
+            1.7582499650781587,
+            0.9999999999998082
+          ]
+        }
+      },
+      "selected_from_training_only": "ratio_p",
+      "training_rms_gap": 0.01582914073789308,
+      "threshold_heuristic": 0.005,
+      "holdout_selection_source": "candidate predictions only, no labels",
+      "scenario_informativeness": [
+        {
+          "scenario": "H01",
+          "post_t8_informative_predicted": 17,
+          "post_t8_both_inactive_predicted": 0,
+          "post_t8_mean_candidate_disagreement": 0.04759254436973293,
+          "post_t8_max_candidate_disagreement": 0.05270544479654271
+        },
+        {
+          "scenario": "H02",
+          "post_t8_informative_predicted": 4,
+          "post_t8_both_inactive_predicted": 0,
+          "post_t8_mean_candidate_disagreement": 0.007357488898005595,
+          "post_t8_max_candidate_disagreement": 0.04989883512235738
+        },
+        {
+          "scenario": "H03",
+          "post_t8_informative_predicted": 1,
+          "post_t8_both_inactive_predicted": 0,
+          "post_t8_mean_candidate_disagreement": 0.002935225595432787,
+          "post_t8_max_candidate_disagreement": 0.04989883512235738
+        },
+        {
+          "scenario": "H04",
+          "post_t8_informative_predicted": 1,
+          "post_t8_both_inactive_predicted": 0,
+          "post_t8_mean_candidate_disagreement": 0.002935225595432787,
+          "post_t8_max_candidate_disagreement": 0.04989883512235738
+        },
+        {
+          "scenario": "H05",
+          "post_t8_informative_predicted": 0,
+          "post_t8_both_inactive_predicted": 17,
+          "post_t8_mean_candidate_disagreement": 0.0,
+          "post_t8_max_candidate_disagreement": 0.0
+        },
+        {
+          "scenario": "H06",
+          "post_t8_informative_predicted": 16,
+          "post_t8_both_inactive_predicted": 0,
+          "post_t8_mean_candidate_disagreement": 0.026211325689542497,
+          "post_t8_max_candidate_disagreement": 0.046313425498221594
+        },
+        {
+          "scenario": "H07",
+          "post_t8_informative_predicted": 0,
+          "post_t8_both_inactive_predicted": 17,
+          "post_t8_mean_candidate_disagreement": 0.0,
+          "post_t8_max_candidate_disagreement": 0.0
+        },
+        {
+          "scenario": "H08",
+          "post_t8_informative_predicted": 0,
+          "post_t8_both_inactive_predicted": 17,
+          "post_t8_mean_candidate_disagreement": 0.0,
+          "post_t8_max_candidate_disagreement": 0.0
+        },
+        {
+          "scenario": "H09",
+          "post_t8_informative_predicted": 13,
+          "post_t8_both_inactive_predicted": 1,
+          "post_t8_mean_candidate_disagreement": 0.030008271148018687,
+          "post_t8_max_candidate_disagreement": 0.0626190170304518
+        },
+        {
+          "scenario": "H10",
+          "post_t8_informative_predicted": 8,
+          "post_t8_both_inactive_predicted": 0,
+          "post_t8_mean_candidate_disagreement": 0.004889624046103524,
+          "post_t8_max_candidate_disagreement": 0.0108996072623474
+        },
+        {
+          "scenario": "H11",
+          "post_t8_informative_predicted": 0,
+          "post_t8_both_inactive_predicted": 17,
+          "post_t8_mean_candidate_disagreement": 0.0,
+          "post_t8_max_candidate_disagreement": 0.0
+        },
+        {
+          "scenario": "H12",
+          "post_t8_informative_predicted": 0,
+          "post_t8_both_inactive_predicted": 17,
+          "post_t8_mean_candidate_disagreement": 0.0,
+          "post_t8_max_candidate_disagreement": 0.0
+        },
+        {
+          "scenario": "H13",
+          "post_t8_informative_predicted": 0,
+          "post_t8_both_inactive_predicted": 17,
+          "post_t8_mean_candidate_disagreement": 0.0,
+          "post_t8_max_candidate_disagreement": 0.0
+        },
+        {
+          "scenario": "H14",
+          "post_t8_informative_predicted": 0,
+          "post_t8_both_inactive_predicted": 17,
+          "post_t8_mean_candidate_disagreement": 0.0,
+          "post_t8_max_candidate_disagreement": 0.0
+        },
+        {
+          "scenario": "H15",
+          "post_t8_informative_predicted": 14,
+          "post_t8_both_inactive_predicted": 0,
+          "post_t8_mean_candidate_disagreement": 0.0202040808005379,
+          "post_t8_max_candidate_disagreement": 0.06234230859869516
+        },
+        {
+          "scenario": "H16",
+          "post_t8_informative_predicted": 10,
+          "post_t8_both_inactive_predicted": 0,
+          "post_t8_mean_candidate_disagreement": 0.008127476042475454,
+          "post_t8_max_candidate_disagreement": 0.02572422269448038
+        },
+        {
+          "scenario": "H17",
+          "post_t8_informative_predicted": 6,
+          "post_t8_both_inactive_predicted": 4,
+          "post_t8_mean_candidate_disagreement": 0.004356335408467406,
+          "post_t8_max_candidate_disagreement": 0.011448760922423307
+        }
+      ]
+    },
+    "noisy_1pct": {
+      "fit_by_family": {
+        "diff_c": {
+          "family": "diff_c",
+          "method": "TRF",
+          "start": "2",
+          "train_rms": 0.01875084755145115,
+          "nfev": 12,
+          "calls_including_jacobian": 44,
+          "success": true,
+          "params": [
+            -15.577250187009229,
+            0.647972261424973,
+            0.014030516692933663,
+            0.9292769539304085
+          ]
+        },
+        "ratio_p": {
+          "family": "ratio_p",
+          "method": "TRF",
+          "start": "0",
+          "train_rms": 0.009293341517975834,
+          "nfev": 11,
+          "calls_including_jacobian": 39,
+          "success": true,
+          "params": [
+            0.8187012494586633,
+            0.6547233976632872,
+            1.75870152506387,
+            0.9971028024126043
+          ]
+        }
+      },
+      "selected_from_training_only": "ratio_p",
+      "training_rms_gap": 0.009457506033475315,
+      "threshold_heuristic": 0.005,
+      "holdout_selection_source": "candidate predictions only, no labels",
+      "scenario_informativeness": [
+        {
+          "scenario": "H01",
+          "post_t8_informative_predicted": 17,
+          "post_t8_both_inactive_predicted": 0,
+          "post_t8_mean_candidate_disagreement": 0.04783642709612775,
+          "post_t8_max_candidate_disagreement": 0.053050312527658905
+        },
+        {
+          "scenario": "H02",
+          "post_t8_informative_predicted": 4,
+          "post_t8_both_inactive_predicted": 0,
+          "post_t8_mean_candidate_disagreement": 0.006748939444247854,
+          "post_t8_max_candidate_disagreement": 0.05025191225486825
+        },
+        {
+          "scenario": "H03",
+          "post_t8_informative_predicted": 1,
+          "post_t8_both_inactive_predicted": 0,
+          "post_t8_mean_candidate_disagreement": 0.002955994838521662,
+          "post_t8_max_candidate_disagreement": 0.05025191225486825
+        },
+        {
+          "scenario": "H04",
+          "post_t8_informative_predicted": 1,
+          "post_t8_both_inactive_predicted": 0,
+          "post_t8_mean_candidate_disagreement": 0.002955994838521662,
+          "post_t8_max_candidate_disagreement": 0.05025191225486825
+        },
+        {
+          "scenario": "H05",
+          "post_t8_informative_predicted": 0,
+          "post_t8_both_inactive_predicted": 17,
+          "post_t8_mean_candidate_disagreement": 0.0,
+          "post_t8_max_candidate_disagreement": 0.0
+        },
+        {
+          "scenario": "H06",
+          "post_t8_informative_predicted": 13,
+          "post_t8_both_inactive_predicted": 0,
+          "post_t8_mean_candidate_disagreement": 0.023719779827140998,
+          "post_t8_max_candidate_disagreement": 0.046353030946708396
+        },
+        {
+          "scenario": "H07",
+          "post_t8_informative_predicted": 0,
+          "post_t8_both_inactive_predicted": 17,
+          "post_t8_mean_candidate_disagreement": 0.0,
+          "post_t8_max_candidate_disagreement": 0.0
+        },
+        {
+          "scenario": "H08",
+          "post_t8_informative_predicted": 0,
+          "post_t8_both_inactive_predicted": 17,
+          "post_t8_mean_candidate_disagreement": 0.0,
+          "post_t8_max_candidate_disagreement": 0.0
+        },
+        {
+          "scenario": "H09",
+          "post_t8_informative_predicted": 13,
+          "post_t8_both_inactive_predicted": 2,
+          "post_t8_mean_candidate_disagreement": 0.02791574564538354,
+          "post_t8_max_candidate_disagreement": 0.06206872797009655
+        },
+        {
+          "scenario": "H10",
+          "post_t8_informative_predicted": 9,
+          "post_t8_both_inactive_predicted": 0,
+          "post_t8_mean_candidate_disagreement": 0.00489492912805388,
+          "post_t8_max_candidate_disagreement": 0.010719933180854846
+        },
+        {
+          "scenario": "H11",
+          "post_t8_informative_predicted": 0,
+          "post_t8_both_inactive_predicted": 17,
+          "post_t8_mean_candidate_disagreement": 0.0,
+          "post_t8_max_candidate_disagreement": 0.0
+        },
+        {
+          "scenario": "H12",
+          "post_t8_informative_predicted": 0,
+          "post_t8_both_inactive_predicted": 17,
+          "post_t8_mean_candidate_disagreement": 0.0,
+          "post_t8_max_candidate_disagreement": 0.0
+        },
+        {
+          "scenario": "H13",
+          "post_t8_informative_predicted": 0,
+          "post_t8_both_inactive_predicted": 17,
+          "post_t8_mean_candidate_disagreement": 0.0,
+          "post_t8_max_candidate_disagreement": 0.0
+        },
+        {
+          "scenario": "H14",
+          "post_t8_informative_predicted": 0,
+          "post_t8_both_inactive_predicted": 17,
+          "post_t8_mean_candidate_disagreement": 0.0,
+          "post_t8_max_candidate_disagreement": 0.0
+        },
+        {
+          "scenario": "H15",
+          "post_t8_informative_predicted": 14,
+          "post_t8_both_inactive_predicted": 0,
+          "post_t8_mean_candidate_disagreement": 0.019165946470797755,
+          "post_t8_max_candidate_disagreement": 0.058796407487598845
+        },
+        {
+          "scenario": "H16",
+          "post_t8_informative_predicted": 10,
+          "post_t8_both_inactive_predicted": 0,
+          "post_t8_mean_candidate_disagreement": 0.008069780395695862,
+          "post_t8_max_candidate_disagreement": 0.0220253653733391
+        },
+        {
+          "scenario": "H17",
+          "post_t8_informative_predicted": 7,
+          "post_t8_both_inactive_predicted": 4,
+          "post_t8_mean_candidate_disagreement": 0.004446758240791176,
+          "post_t8_max_candidate_disagreement": 0.01171412366645852
+        }
+      ]
+    }
+  },
+  "limitations": [
+    "Training and holdout have shared synthetic generator and same world W016.",
+    "Observed holdout incoming_orders are endogenous to the real system; this is a conditional input-output prediction with future covariates, not an intervention forecast.",
+    "Candidate first-order structure and capacity floor are supplied to the analyst; model family discovery is not blind.",
+    "Observed capacity is the outcome to fit; no latent hidden_excess/impact from oracle is used.",
+    "Noise injected only on observed effective capacity, not business inputs; power not calibrated.",
+    "Training error rankings do not prove unique mechanism identity; ambiguous cases explicitly abstain.",
+    "All 17 holdouts are evaluated by a separate adjudicator, not selected ex post."
+  ],
+  "data_sha256": {
+    "public_manifest.json": "69ce9fb67eed2f866c4b813738a52286f2ebf07be674f1e8ea10d8322e79a9f7",
+    "train_noiseless.csv": "94c93ef4057e2f03b7b0b185a09bc93410a9514a3bb0061c01aca8ae7006ab01",
+    "train_noisy_1pct.csv": "d7a94602b51b524ba10d630936c0416de42298e5d5035b360c2bd797d240c0ec",
+    "holdout_inputs.csv": "c31868e60fecc909ae39977a28e06dda1f369eacb7f76d0d8016140502659b14"
+  },
+  "prediction_sha256": "14d91dd5ed8a73683aecc318b7e2cbcaccbaa9ec2c455e3d70c2b104f7f6853f"
+}
