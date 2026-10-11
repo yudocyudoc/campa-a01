@@ -69,7 +69,7 @@ def produce(public:Path,sealed:Path):
             df=world_case(probe)
             for t,row in df.iterrows():
                 t=float(t)
-                base={name:float(row[name]) for name in OBSERVED}
+                base={name:float(row[name]) for name in OBSERVED if name!="t"}
                 base["t"]=t
                 k=base["nominal_capacity"]
                 original=base["effective_capacity"]
