@@ -8,7 +8,7 @@
 
 - Relación verdadera: `(incoming_orders/nominal_capacity - 0.75)/0.25`.
 - Relación rival: `(incoming_orders - nominal_capacity + 0.25×115)/(0.25×115)`.
-- A capacidad 115, son algebraicamente idénticas para cualquier demanda. Al cambiar capacidad, dejan de serlo.
+- A capacidad 115, son algebraicamente idénticas para cualquier demanda. Con otra capacidad, son distintas **excepto cuando pedidos = capacidad**; ambas condiciones forman superficies de igualdad exacta.\n- Identidad: `ratio_normalizada = diff_normalizada` si y solo si `(K−115)×(pedidos−K)=0`. Cambiar K sin salir de pedidos=K no aporta separación.
 - Usan exactamente el mismo umbral, tasa de ajuste, degradación, valor inicial y demás parámetros del estado. **Los parámetros se fijan una sola vez; jamás se recalibran durante ni después de los probes.**
 
 ## Protocolo computacional mínimo
