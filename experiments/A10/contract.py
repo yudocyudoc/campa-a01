@@ -62,7 +62,7 @@ def simulate_fraction(rows:list[dict],params,kind:str)->list[float]:
     if len(rows)!=TIMES:
         raise ValueError(f"Expected {TIMES} consecutive observations")
     tau,rate,gain,shape=(float(v) for v in params)
-    if not 0<rate<=1 or gain<0:
+    if not 0<rate<2 or gain<0:
         raise ValueError("Invalid rate/gain")
     times=[float(r["t"]) for r in rows]
     if any(abs(t-i)>1e-7 for i,t in enumerate(times)):
