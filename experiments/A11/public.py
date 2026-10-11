@@ -44,7 +44,8 @@ def package(out:Path):
           "receivables":float(last["receivables"]),
           "cash":float(last["cash"]),
           "previous_effective_capacity":float(prev["effective_capacity"]),
-          "previous_nominal_capacity":float(prev["nominal_capacity"])}
+          "previous_nominal_capacity":float(prev["nominal_capacity"]),
+          "previous_incoming_orders":float(prev["incoming_orders"])}
     if snap["previous_effective_capacity"]/snap["previous_nominal_capacity"]<=BUSINESS["minimum_fraction"]+1e-8:
         raise ValueError("Cannot infer predecision impact from clipping")
     if float(last["nominal_capacity"])!=BASELINE:
