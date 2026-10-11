@@ -14,6 +14,8 @@ import math
 import os
 from pathlib import Path
 
+from design import K0, PROBES, normalized_signals, deterministic_selection
+
 from g5_model_core import (
     DEFAULT_PARAMS, WORLD_CASES, TRUE_DERIVED_ID,
     simulate_world_case, simulate_repair,
@@ -23,7 +25,7 @@ CASE_ID = "W016"
 TRUTH = WORLD_CASES[CASE_ID]
 assert TRUTH["primitive"] == "first_order_relaxation"
 PRIMITIVE = TRUTH["primitive"]
-K0 = float(DEFAULT_PARAMS["nominal_capacity"])  # 115
+assert K0 == float(DEFAULT_PARAMS["nominal_capacity"])
 RATIO_ID = TRUE_DERIVED_ID
 DIFF_ID = "diff::incoming_orders-nominal_capacity"
 FEATURE_META = {
@@ -36,24 +38,6 @@ SCALES = {"effective_capacity": K0, "backlog": K0, "cash": 20_000.0}
 EXCITATION_FLOOR = 1e-9  # numerical/noiseless flag, NOT calibrated detection threshold
 
 # Define ALL candidate interventions in advance.
-PROBES = [
-    {"id": "control_K115_S25", "kind": "control", "capacity": 115.0, "shock": 25.0},
-    {"id": "demand_K115_S0", "kind": "demand_only", "capacity": 115.0, "shock": 0.0},
-    {"id": "demand_K115_S50", "kind": "demand_only", "capacity": 115.0, "shock": 50.0},
-    {"id": "demand_K115_S70", "kind": "demand_only", "capacity": 115.0, "shock": 70.0},
-    *[
-        {"id": f"cross_K{int(k)}_S{int(shock)}", "kind": "crossed", "capacity": k, "shock": shock}
-        for k in (90.0, 145.0, 180.0, 220.0)
-        for shock in (0.0, 25.0, 50.0, 70.0)
-    ],
-    {"id": "pulse_K80_S25", "kind": "transient", "capacity": 115.0, "shock": 25.0,
-     "stress_capacity": 80.0, "stress_start": 8.0, "stress_end": 12.0},
-    {"id": "pulse_K160_S25", "kind": "transient", "capacity": 115.0, "shock": 25.0,
-     "stress_capacity": 160.0, "stress_start": 8.0, "stress_end": 12.0},
-    {"id": "pulse_K90_S50", "kind": "transient", "capacity": 145.0, "shock": 50.0,
-     "stress_capacity": 90.0, "stress_start": 8.0, "stress_end": 12.0},
-]
-
 # Two candidates deliberately normalized to be IDENTICAL at K=K0.
 # In the original WORLD: normalized feature = (orders/K - 0.75) / 0.25.
 # For diff, (orders-K + 0.25*K0) / (0.25*K0) agrees only when K=K0.
@@ -65,13 +49,6 @@ REPAIRS = {
     RATIO_ID: {**REPAIR_COMMON, "baseline": 0.75, "excursion": 0.25},
     DIFF_ID: {**REPAIR_COMMON, "baseline": -0.25 * K0, "excursion": 0.25 * K0},
 }
-
-
-def normalized_signals(orders: float, capacity: float) -> tuple[float, float]:
-    """Pre-given, pair-matched feature geometry. No fitted parameters."""
-    ratio = (orders / capacity - 0.75) / 0.25
-    diff = (orders - capacity + 0.25 * K0) / (0.25 * K0)
-    return ratio, diff
 
 
 def kwargs_for(probe: dict) -> dict:
@@ -113,13 +90,6 @@ def distance(a, b) -> tuple[float, dict]:
     if not math.isfinite(total):
         raise AssertionError("Non-finite separation")
     return total, contributions
-
-
-def deterministic_selection(table: list[dict]) -> list[str]:
-    eligible = [r for r in table if r["kind"] in ("crossed", "transient")]
-    # Fixed ranking on candidate-prediction-only discrepancy; never consult WORLD.
-    eligible.sort(key=lambda r: (-r["candidate_disagreement"], r["probe"]))
-    return [r["probe"] for r in eligible[:4]]
 
 
 def checksum(path: Path) -> str:
