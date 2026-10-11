@@ -1,0 +1,49 @@
+name: CEI | A06 ratio vs diferencia
+
+on:
+  pull_request:
+    paths:
+      - 'experiments/A06/**'
+      - '.github/workflows/cei-a06.yml'
+      - 'tests/test_a06.py'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  ratio-diff-local-separator:
+    name: A06 | fixed parameter intervention
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      MPLBACKEND: Agg
+      PYTHONUNBUFFERED: '1'
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install original G5 engine
+        run: |
+          python -m pip install "setuptools<82" "jedi>=0.16" "bptk-py[plotting]==3.2.0" "networkx>=3,<4"
+      - name: Unit tests for mathematical equivalence and design
+        run: python -m unittest discover -s tests -p 'test_a06.py' -v
+      - name: Run candidate-designed probe experiment
+        run: python experiments/A06/experiment.py --out results/A06
+      - name: Validate evidence schema
+        run: |
+          python -m json.tool results/A06/summary.json > /dev/null
+          python -m json.tool results/A06/design.json > /dev/null
+      - name: Publish all available outputs, including failures
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: a06-ratio-difference-probe-results
+          path: results/A06/
+          if-no-files-found: warn
+          retention-days: 30
