@@ -1,0 +1,157 @@
+{
+  "experiment": "A07",
+  "computation_status": "COMPLETED",
+  "scientific_claim": "FIXED_PARAMETER_DOMAIN_LOCAL_EVIDENCE_ONLY",
+  "case": "W016",
+  "arms": {
+    "fixed_capacity": {
+      "training_rmse": 7.33682261950523e-16,
+      "train_credibility_heuristic": true,
+      "selected": [
+        "holdout_K180_S70",
+        "pulse_K250_S70",
+        "holdout_K145_S70",
+        "holdout_K90_S0"
+      ],
+      "local_separators": 4,
+      "above_practical_gap": 4,
+      "max_out_of_sample_gap": 0.36763989161767946,
+      "interpretation": "LOCAL_ADVERSARY_DISCRIMINATED"
+    },
+    "cross_capacity": {
+      "training_rmse": 0.017377585731426292,
+      "train_credibility_heuristic": false,
+      "selected": [
+        "holdout_K180_S70",
+        "pulse_K250_S70",
+        "holdout_K145_S70",
+        "holdout_K90_S0"
+      ],
+      "local_separators": 4,
+      "above_practical_gap": 4,
+      "max_out_of_sample_gap": 0.3170232372703912,
+      "interpretation": "NO_STRONG_CLAIM_TRAIN_FIT_OR_SEPARATION_INSUFFICIENT"
+    }
+  },
+  "adjudication": [
+    {
+      "arm": "fixed_capacity",
+      "rank": 1,
+      "probe": "holdout_K180_S70",
+      "capacity": 180.0,
+      "shock": 70.0,
+      "predicted_disagreement": 0.36763989161767946,
+      "world_error_ratio": 0.0,
+      "world_error_refit_difference": 0.36763989161767946,
+      "adversarial_generalization_gap": 0.36763989161767946,
+      "local_numeric_separator": true,
+      "practical_gap_exceeded": true
+    },
+    {
+      "arm": "fixed_capacity",
+      "rank": 2,
+      "probe": "pulse_K250_S70",
+      "capacity": 180.0,
+      "shock": 70.0,
+      "predicted_disagreement": 0.2361988576472017,
+      "world_error_ratio": 0.0,
+      "world_error_refit_difference": 0.2361988576472017,
+      "adversarial_generalization_gap": 0.2361988576472017,
+      "local_numeric_separator": true,
+      "practical_gap_exceeded": true
+    },
+    {
+      "arm": "fixed_capacity",
+      "rank": 3,
+      "probe": "holdout_K145_S70",
+      "capacity": 145.0,
+      "shock": 70.0,
+      "predicted_disagreement": 0.12029434587485888,
+      "world_error_ratio": 0.0,
+      "world_error_refit_difference": 0.12029434587485888,
+      "adversarial_generalization_gap": 0.12029434587485888,
+      "local_numeric_separator": true,
+      "practical_gap_exceeded": true
+    },
+    {
+      "arm": "fixed_capacity",
+      "rank": 4,
+      "probe": "holdout_K90_S0",
+      "capacity": 90.0,
+      "shock": 0.0,
+      "predicted_disagreement": 0.041869858219900156,
+      "world_error_ratio": 0.0,
+      "world_error_refit_difference": 0.041869858219900156,
+      "adversarial_generalization_gap": 0.041869858219900156,
+      "local_numeric_separator": true,
+      "practical_gap_exceeded": true
+    },
+    {
+      "arm": "cross_capacity",
+      "rank": 1,
+      "probe": "holdout_K180_S70",
+      "capacity": 180.0,
+      "shock": 70.0,
+      "predicted_disagreement": 0.3170232372703912,
+      "world_error_ratio": 0.0,
+      "world_error_refit_difference": 0.3170232372703912,
+      "adversarial_generalization_gap": 0.3170232372703912,
+      "local_numeric_separator": true,
+      "practical_gap_exceeded": true
+    },
+    {
+      "arm": "cross_capacity",
+      "rank": 2,
+      "probe": "pulse_K250_S70",
+      "capacity": 180.0,
+      "shock": 70.0,
+      "predicted_disagreement": 0.20271379199580877,
+      "world_error_ratio": 0.0,
+      "world_error_refit_difference": 0.20271379199580877,
+      "adversarial_generalization_gap": 0.20271379199580877,
+      "local_numeric_separator": true,
+      "practical_gap_exceeded": true
+    },
+    {
+      "arm": "cross_capacity",
+      "rank": 3,
+      "probe": "holdout_K145_S70",
+      "capacity": 145.0,
+      "shock": 70.0,
+      "predicted_disagreement": 0.10238735950473002,
+      "world_error_ratio": 0.0,
+      "world_error_refit_difference": 0.10238735950473002,
+      "adversarial_generalization_gap": 0.10238735950473002,
+      "local_numeric_separator": true,
+      "practical_gap_exceeded": true
+    },
+    {
+      "arm": "cross_capacity",
+      "rank": 4,
+      "probe": "holdout_K90_S0",
+      "capacity": 90.0,
+      "shock": 0.0,
+      "predicted_disagreement": 0.04945872647683201,
+      "world_error_ratio": 0.0,
+      "world_error_refit_difference": 0.04945872647683201,
+      "adversarial_generalization_gap": 0.04945872647683201,
+      "local_numeric_separator": true,
+      "practical_gap_exceeded": true
+    }
+  ],
+  "limitations": [
+    "The reference truth and true ratio parameters are known, not inferred blindly.",
+    "The adversarial difference model is optimized only on training observations; holdout WORLD is not used during fitting or probe design.",
+    "Three deterministic starts and finite fit budgets cannot certify a global adversarial optimum.",
+    "The practical RMS threshold 0.01 is heuristic, not derived from observation noise or statistical power.",
+    "Family-wide nonidentifiability cannot be inferred from an optimizer failure; nor can uniform identifiability from this separator.",
+    "G5 historical experiment, outcomes and thresholds are untouched."
+  ],
+  "files_sha256": {
+    "candidate_only_probes.csv": "d247a2c8b5aebc7037089877aec504b59c581b7012cbede5edb29f5864d1acc1",
+    "design_frozen_before_holdout.json": "8e7c52e72df5968b25805c529a42f927e2cc80290e13980beb42f2201c954a21",
+    "fit_multistart.csv": "497ae9f69bf083cba84b21fd208226d1cfa621fbdf8fabd65044071dd85b1c7f",
+    "heldout_adjudication.csv": "e075d9c8fd081b29577a5e3837a1e47ec6f9a2693984a3e741e4dd7949ab2b55"
+  },
+  "github_sha": "a0296f34a3ed3ff71e407d0c43d93d39013a4f85"
+}

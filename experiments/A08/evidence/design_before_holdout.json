@@ -1,0 +1,285 @@
+{
+  "phase": "TRAINING_AND_FIT_DONE_BEFORE_ANY_HOLDOUT_WORLD",
+  "case": "W016",
+  "world_is_known_not_blind": true,
+  "original_g5_equations": true,
+  "design": {
+    "training": [
+      {
+        "id": "train_K115_S0",
+        "kind": "fixed_training",
+        "capacity": 115.0,
+        "shock": 0.0
+      },
+      {
+        "id": "train_K115_S25",
+        "kind": "fixed_training",
+        "capacity": 115.0,
+        "shock": 25.0
+      },
+      {
+        "id": "train_K115_S70",
+        "kind": "fixed_training",
+        "capacity": 115.0,
+        "shock": 70.0
+      },
+      {
+        "id": "train_K145_S25",
+        "kind": "cross_training",
+        "capacity": 145.0,
+        "shock": 25.0
+      },
+      {
+        "id": "train_K145_S50",
+        "kind": "cross_training",
+        "capacity": 145.0,
+        "shock": 50.0
+      }
+    ],
+    "holdouts": [
+      {
+        "id": "holdout_K90_S0",
+        "kind": "cross_holdout",
+        "capacity": 90.0,
+        "shock": 0.0,
+        "stratum": "K90"
+      },
+      {
+        "id": "holdout_K90_S25",
+        "kind": "cross_holdout",
+        "capacity": 90.0,
+        "shock": 25.0,
+        "stratum": "K90"
+      },
+      {
+        "id": "holdout_K90_S50",
+        "kind": "cross_holdout",
+        "capacity": 90.0,
+        "shock": 50.0,
+        "stratum": "K90"
+      },
+      {
+        "id": "holdout_K90_S70",
+        "kind": "cross_holdout",
+        "capacity": 90.0,
+        "shock": 70.0,
+        "stratum": "K90"
+      },
+      {
+        "id": "holdout_K145_S0",
+        "kind": "cross_holdout",
+        "capacity": 145.0,
+        "shock": 0.0,
+        "stratum": "K145"
+      },
+      {
+        "id": "holdout_K145_S70",
+        "kind": "cross_holdout",
+        "capacity": 145.0,
+        "shock": 70.0,
+        "stratum": "K145"
+      },
+      {
+        "id": "holdout_K180_S0",
+        "kind": "cross_holdout",
+        "capacity": 180.0,
+        "shock": 0.0,
+        "stratum": "K180"
+      },
+      {
+        "id": "holdout_K180_S25",
+        "kind": "cross_holdout",
+        "capacity": 180.0,
+        "shock": 25.0,
+        "stratum": "K180"
+      },
+      {
+        "id": "holdout_K180_S50",
+        "kind": "cross_holdout",
+        "capacity": 180.0,
+        "shock": 50.0,
+        "stratum": "K180"
+      },
+      {
+        "id": "holdout_K180_S70",
+        "kind": "cross_holdout",
+        "capacity": 180.0,
+        "shock": 70.0,
+        "stratum": "K180"
+      },
+      {
+        "id": "holdout_K220_S0",
+        "kind": "cross_holdout",
+        "capacity": 220.0,
+        "shock": 0.0,
+        "stratum": "K220"
+      },
+      {
+        "id": "holdout_K220_S25",
+        "kind": "cross_holdout",
+        "capacity": 220.0,
+        "shock": 25.0,
+        "stratum": "K220"
+      },
+      {
+        "id": "holdout_K220_S50",
+        "kind": "cross_holdout",
+        "capacity": 220.0,
+        "shock": 50.0,
+        "stratum": "K220"
+      },
+      {
+        "id": "holdout_K220_S70",
+        "kind": "cross_holdout",
+        "capacity": 220.0,
+        "shock": 70.0,
+        "stratum": "K220"
+      },
+      {
+        "id": "pulse_K80_S25",
+        "kind": "pulse_holdout",
+        "capacity": 115.0,
+        "shock": 25.0,
+        "stratum": "pulse",
+        "stress_capacity": 80.0,
+        "stress_start": 8.0,
+        "stress_end": 12.0
+      },
+      {
+        "id": "pulse_K90_S50",
+        "kind": "pulse_holdout",
+        "capacity": 145.0,
+        "shock": 50.0,
+        "stratum": "pulse",
+        "stress_capacity": 90.0,
+        "stress_start": 8.0,
+        "stress_end": 12.0
+      },
+      {
+        "id": "pulse_K250_S70",
+        "kind": "pulse_holdout",
+        "capacity": 180.0,
+        "shock": 70.0,
+        "stratum": "pulse",
+        "stress_capacity": 250.0,
+        "stress_start": 8.0,
+        "stress_end": 12.0
+      }
+    ],
+    "families_and_bounds": {
+      "diff_c": {
+        "bounds": [
+          [
+            -150.0,
+            0.1,
+            0.0003,
+            0.2
+          ],
+          [
+            160.0,
+            1.2,
+            0.1,
+            2.0
+          ]
+        ],
+        "local_starts": [
+          [
+            -22.5,
+            0.63,
+            0.0153,
+            1.0
+          ],
+          [
+            -20.0,
+            0.45,
+            0.015,
+            0.8
+          ]
+        ]
+      },
+      "ratio_p": {
+        "bounds": [
+          [
+            0.01,
+            0.1,
+            0.01,
+            0.2
+          ],
+          [
+            2.5,
+            1.2,
+            5.0,
+            1.8
+          ]
+        ],
+        "local_starts": [
+          [
+            0.8,
+            0.5,
+            1.7,
+            0.8
+          ],
+          [
+            0.9,
+            0.7,
+            1.9,
+            1.2
+          ]
+        ]
+      }
+    },
+    "global_optimizer": {
+      "name": "scipy.differential_evolution",
+      "seed": 20261011,
+      "maxiter": 12,
+      "popsize": 4,
+      "polish": false
+    },
+    "local_max_nfev": 60,
+    "scales": [
+      115.0,
+      115.0,
+      20000.0
+    ],
+    "variables": [
+      "effective_capacity",
+      "backlog",
+      "cash"
+    ],
+    "numeric_tolerance": 1e-08,
+    "heuristic_not_noise_calibrated": 0.01
+  },
+  "best_training_only": {
+    "diff_c": {
+      "family": "diff_c",
+      "method": "least_squares",
+      "start": "0",
+      "solver_success": true,
+      "status_message": "`ftol` termination condition is satisfied.",
+      "solver_nfev": 8,
+      "actual_residual_calls": 40,
+      "train_rms": 0.016932807979581303,
+      "tau": -24.752720142188714,
+      "rate": 0.6257397729344485,
+      "gain": 0.014456552279360603,
+      "shape": 1.0070633038359988
+    },
+    "ratio_p": {
+      "family": "ratio_p",
+      "method": "least_squares",
+      "start": "0",
+      "solver_success": true,
+      "status_message": "`gtol` termination condition is satisfied.",
+      "solver_nfev": 38,
+      "actual_residual_calls": 182,
+      "train_rms": 4.681212562004957e-15,
+      "tau": 0.8043657644784503,
+      "rate": 0.6341171854167389,
+      "gain": 1.7582499650790158,
+      "shape": 0.9999999999999998
+    }
+  },
+  "nested_ratio_analytic_control_rmse": 7.071889008841607e-16,
+  "fit_attempts_sha256": "54baff4e4196aac0ed82930a3d4eeff6297aa3d07b8db64b17e00aca0c7f8a9b",
+  "github_sha": "04474aeecf3f1c31797fec1262b433f261fedeab"
+}

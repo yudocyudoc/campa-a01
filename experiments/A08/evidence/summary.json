@@ -1,0 +1,73 @@
+{
+  "experiment": "A08",
+  "computation": "COMPLETED",
+  "scientific_scope": "ONE_KNOWN_SYNTHETIC_WORLD_TWO_NESTED_OR_GENERALIZED_FAMILIES",
+  "analytic_nested_ratio_control_rms_train": 7.071889008841607e-16,
+  "family_results": {
+    "diff_c": {
+      "best_fit": {
+        "family": "diff_c",
+        "method": "least_squares",
+        "start": "0",
+        "solver_success": true,
+        "status_message": "`ftol` termination condition is satisfied.",
+        "solver_nfev": 8,
+        "actual_residual_calls": 40,
+        "train_rms": 0.016932807979581303,
+        "tau": -24.752720142188714,
+        "rate": 0.6257397729344485,
+        "gain": 0.014456552279360603,
+        "shape": 1.0070633038359988
+      },
+      "train_rms": 0.016932807979581303,
+      "holdout_count": 17,
+      "holdout_mean_rms": 0.04742898969606918,
+      "holdout_median_rms": 0.009338569193045824,
+      "holdout_max_rms": 0.33888159423566333,
+      "above_numeric_floor": 10,
+      "above_heuristic_gap": 7,
+      "numerical_training_separated": true,
+      "scientific_limit": "SEARCHED_MINIMUM_NOT_CERTIFIED_GLOBAL_MINIMUM"
+    },
+    "ratio_p": {
+      "best_fit": {
+        "family": "ratio_p",
+        "method": "least_squares",
+        "start": "0",
+        "solver_success": true,
+        "status_message": "`gtol` termination condition is satisfied.",
+        "solver_nfev": 38,
+        "actual_residual_calls": 182,
+        "train_rms": 4.681212562004957e-15,
+        "tau": 0.8043657644784503,
+        "rate": 0.6341171854167389,
+        "gain": 1.7582499650790158,
+        "shape": 0.9999999999999998
+      },
+      "train_rms": 4.681212562004957e-15,
+      "holdout_count": 17,
+      "holdout_mean_rms": 2.5157484538834764e-15,
+      "holdout_median_rms": 2.5156766927257342e-15,
+      "holdout_max_rms": 7.848326516001765e-15,
+      "above_numeric_floor": 0,
+      "above_heuristic_gap": 0,
+      "numerical_training_separated": false,
+      "scientific_limit": "SEARCHED_MINIMUM_NOT_CERTIFIED_GLOBAL_MINIMUM"
+    }
+  },
+  "limitations": [
+    "All 17 holdouts are scored; no top-4 max selection.",
+    "Original true-world parameters are known; this is not blind causal recovery.",
+    "Global heuristic and local optimizer cannot certify global error lower bounds.",
+    "No calibrated noise/power or evidence on other 39 worlds.",
+    "For ratio_p, p=1 contains truth; near-zero training RMS is an expected nested control.",
+    "The full stock-flow model can saturate and mask raw-driver differences.",
+    "Historical G5/A07 data and classifications are unchanged."
+  ],
+  "files_sha256": {
+    "fit_attempts.csv": "54baff4e4196aac0ed82930a3d4eeff6297aa3d07b8db64b17e00aca0c7f8a9b",
+    "design_before_holdout.json": "2d7a1e807170488983967f80c3e93e0831153498dd2f0cdcf638ed976a34887e",
+    "all_17_holdouts.csv": "1e1938ccd5346e780c2986d22b87bcf938b0941aa2e6ace0de43b596b5c6a680"
+  },
+  "github_sha": "04474aeecf3f1c31797fec1262b433f261fedeab"
+}

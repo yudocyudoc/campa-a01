@@ -1,0 +1,35 @@
+{
+  "experiments": {
+    "A07": {
+      "sha256": {
+        "candidate_only_probes.csv": "d247a2c8b5aebc7037089877aec504b59c581b7012cbede5edb29f5864d1acc1",
+        "design_frozen_before_holdout.json": "8e7c52e72df5968b25805c529a42f927e2cc80290e13980beb42f2201c954a21",
+        "fit_multistart.csv": "497ae9f69bf083cba84b21fd208226d1cfa621fbdf8fabd65044071dd85b1c7f",
+        "heldout_adjudication.csv": "e075d9c8fd081b29577a5e3837a1e47ec6f9a2693984a3e741e4dd7949ab2b55",
+        "summary.json": "a8d370914c56f89847160540bddd74e7487b26a700f64188d751cb576d2b69e3"
+      },
+      "workflow_run": 38119372061
+    },
+    "A08": {
+      "sha256": {
+        "all_17_holdouts.csv": "1e1938ccd5346e780c2986d22b87bcf938b0941aa2e6ace0de43b596b5c6a680",
+        "design_before_holdout.json": "2d7a1e807170488983967f80c3e93e0831153498dd2f0cdcf638ed976a34887e",
+        "fit_attempts.csv": "54baff4e4196aac0ed82930a3d4eeff6297aa3d07b8db64b17e00aca0c7f8a9b",
+        "summary.json": "3ab8fefeb78f97aaa523f60a60295369081f394cfe150de265884f1aa782db5e"
+      },
+      "workflow_run": 38122052685
+    },
+    "A09": {
+      "sha256": {
+        "a08_scores_rechecked.csv": "873855fd0f3361ff629e9f11de9158f166d8f2fbb82b466241382de736379301",
+        "euler_identity.csv": "8f06e9a3f161487d0da10cb4ba47c96f37feed62fe9b45713f2460b9e9a5644e",
+        "internal_trajectories.csv": "3ef161d5ec5b482f8c561e3b432f05d747cf5f5dc6e590aa3ed83a997e97d94a",
+        "regime_counts.csv": "535a26862477c69b550472039828d17cbef7e5e5da9b99b78d970c822b2e0ee9",
+        "summary.json": "1a896cead83a87bc543446b7686ea1b0b5a5721b229ddac9086d9ff69c9acadd"
+      },
+      "workflow_run": 38124252708
+    }
+  },
+  "schema": "CEI evidence archive v1",
+  "source": "GitHub Actions extracted files, not rerun or rewritten"
+}

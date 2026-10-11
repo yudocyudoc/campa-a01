@@ -1,0 +1,272 @@
+{
+  "experiment": "A07",
+  "commit_stage": "AFTER_FITTING_BEFORE_HOLDOUT_WORLD",
+  "source": "Original CEI c0.0 corrected G5 equations reused from A06",
+  "case": "W016",
+  "training": {
+    "fixed_capacity": [
+      {
+        "id": "train_K115_S0",
+        "kind": "fixed_training",
+        "capacity": 115.0,
+        "shock": 0.0
+      },
+      {
+        "id": "train_K115_S25",
+        "kind": "fixed_training",
+        "capacity": 115.0,
+        "shock": 25.0
+      },
+      {
+        "id": "train_K115_S70",
+        "kind": "fixed_training",
+        "capacity": 115.0,
+        "shock": 70.0
+      }
+    ],
+    "cross_capacity": [
+      {
+        "id": "train_K115_S0",
+        "kind": "fixed_training",
+        "capacity": 115.0,
+        "shock": 0.0
+      },
+      {
+        "id": "train_K115_S25",
+        "kind": "fixed_training",
+        "capacity": 115.0,
+        "shock": 25.0
+      },
+      {
+        "id": "train_K115_S70",
+        "kind": "fixed_training",
+        "capacity": 115.0,
+        "shock": 70.0
+      },
+      {
+        "id": "train_K145_S25",
+        "kind": "cross_training",
+        "capacity": 145.0,
+        "shock": 25.0
+      },
+      {
+        "id": "train_K145_S50",
+        "kind": "cross_training",
+        "capacity": 145.0,
+        "shock": 50.0
+      }
+    ]
+  },
+  "holdouts": [
+    {
+      "id": "holdout_K90_S0",
+      "kind": "cross_holdout",
+      "capacity": 90.0,
+      "shock": 0.0,
+      "stratum": "K90"
+    },
+    {
+      "id": "holdout_K90_S25",
+      "kind": "cross_holdout",
+      "capacity": 90.0,
+      "shock": 25.0,
+      "stratum": "K90"
+    },
+    {
+      "id": "holdout_K90_S50",
+      "kind": "cross_holdout",
+      "capacity": 90.0,
+      "shock": 50.0,
+      "stratum": "K90"
+    },
+    {
+      "id": "holdout_K90_S70",
+      "kind": "cross_holdout",
+      "capacity": 90.0,
+      "shock": 70.0,
+      "stratum": "K90"
+    },
+    {
+      "id": "holdout_K145_S0",
+      "kind": "cross_holdout",
+      "capacity": 145.0,
+      "shock": 0.0,
+      "stratum": "K145"
+    },
+    {
+      "id": "holdout_K145_S70",
+      "kind": "cross_holdout",
+      "capacity": 145.0,
+      "shock": 70.0,
+      "stratum": "K145"
+    },
+    {
+      "id": "holdout_K180_S0",
+      "kind": "cross_holdout",
+      "capacity": 180.0,
+      "shock": 0.0,
+      "stratum": "K180"
+    },
+    {
+      "id": "holdout_K180_S25",
+      "kind": "cross_holdout",
+      "capacity": 180.0,
+      "shock": 25.0,
+      "stratum": "K180"
+    },
+    {
+      "id": "holdout_K180_S50",
+      "kind": "cross_holdout",
+      "capacity": 180.0,
+      "shock": 50.0,
+      "stratum": "K180"
+    },
+    {
+      "id": "holdout_K180_S70",
+      "kind": "cross_holdout",
+      "capacity": 180.0,
+      "shock": 70.0,
+      "stratum": "K180"
+    },
+    {
+      "id": "holdout_K220_S0",
+      "kind": "cross_holdout",
+      "capacity": 220.0,
+      "shock": 0.0,
+      "stratum": "K220"
+    },
+    {
+      "id": "holdout_K220_S25",
+      "kind": "cross_holdout",
+      "capacity": 220.0,
+      "shock": 25.0,
+      "stratum": "K220"
+    },
+    {
+      "id": "holdout_K220_S50",
+      "kind": "cross_holdout",
+      "capacity": 220.0,
+      "shock": 50.0,
+      "stratum": "K220"
+    },
+    {
+      "id": "holdout_K220_S70",
+      "kind": "cross_holdout",
+      "capacity": 220.0,
+      "shock": 70.0,
+      "stratum": "K220"
+    },
+    {
+      "id": "pulse_K80_S25",
+      "kind": "pulse_holdout",
+      "capacity": 115.0,
+      "shock": 25.0,
+      "stratum": "pulse",
+      "stress_capacity": 80.0,
+      "stress_start": 8.0,
+      "stress_end": 12.0
+    },
+    {
+      "id": "pulse_K90_S50",
+      "kind": "pulse_holdout",
+      "capacity": 145.0,
+      "shock": 50.0,
+      "stratum": "pulse",
+      "stress_capacity": 90.0,
+      "stress_start": 8.0,
+      "stress_end": 12.0
+    },
+    {
+      "id": "pulse_K250_S70",
+      "kind": "pulse_holdout",
+      "capacity": 180.0,
+      "shock": 70.0,
+      "stratum": "pulse",
+      "stress_capacity": 250.0,
+      "stress_start": 8.0,
+      "stress_end": 12.0
+    }
+  ],
+  "parameter_bounds": [
+    [
+      -100.0,
+      10.0,
+      0.1,
+      0.05
+    ],
+    [
+      100.0,
+      120.0,
+      1.2,
+      0.9
+    ]
+  ],
+  "max_nfev_per_start": 42,
+  "optimizer": "scipy.optimize.least_squares TRF with three deterministic starts",
+  "models": {
+    "true_ratio": {
+      "threshold": 0.217463057913801,
+      "adjustment_rate": 0.6341171854167359,
+      "degradation": 0.4395624912697545,
+      "baseline": 0.75,
+      "excursion": 0.25,
+      "orientation": 1.0,
+      "minimum_fraction": 0.4
+    },
+    "rival_difference": {
+      "fixed_capacity": {
+        "arm": "fixed_capacity",
+        "start": 0,
+        "success": true,
+        "message": "`gtol` termination condition is satisfied.",
+        "nfev_scipy": 1,
+        "residual_calls_total_with_derivatives": 5,
+        "train_rmse": 7.33682261950523e-16,
+        "tau": -22.497937084978222,
+        "excursion": 28.75,
+        "adjustment_rate": 0.6341171854167359,
+        "degradation": 0.4395624912697545,
+        "at_parameter_boundary": false
+      },
+      "cross_capacity": {
+        "arm": "cross_capacity",
+        "start": 2,
+        "success": true,
+        "message": "`xtol` termination condition is satisfied.",
+        "nfev_scipy": 22,
+        "residual_calls_total_with_derivatives": 70,
+        "train_rmse": 0.017377585731426292,
+        "tau": -23.75945829807946,
+        "excursion": 44.70680741626921,
+        "adjustment_rate": 0.6270029799540493,
+        "degradation": 0.6478504436662083,
+        "at_parameter_boundary": false
+      }
+    }
+  },
+  "selection": {
+    "fixed_capacity": [
+      "holdout_K180_S70",
+      "pulse_K250_S70",
+      "holdout_K145_S70",
+      "holdout_K90_S0"
+    ],
+    "cross_capacity": [
+      "holdout_K180_S70",
+      "pulse_K250_S70",
+      "holdout_K145_S70",
+      "holdout_K90_S0"
+    ]
+  },
+  "candidate_predictions_sha256": "d247a2c8b5aebc7037089877aec504b59c581b7012cbede5edb29f5864d1acc1",
+  "training_true_ratio_rmse": {
+    "train_K115_S0": 0.0,
+    "train_K115_S25": 0.0,
+    "train_K115_S70": 0.0,
+    "train_K145_S25": 0.0,
+    "train_K145_S50": 0.0
+  },
+  "numeric_floor": 1e-08,
+  "practical_gap_not_noise_calibrated": 0.01,
+  "scientific_scope": "LOCAL_ADVERSARIAL_REFIT_TRAIN_TEST_NOT_FAMILY_IDENTIFIABILITY"
+}

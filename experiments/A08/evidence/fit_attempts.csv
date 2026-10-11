@@ -1,0 +1,9 @@
+family,method,start,solver_success,status_message,solver_nfev,actual_residual_calls,train_rms,tau,rate,gain,shape
+diff_c,differential_evolution,seed_20261011,False,Maximum number of iterations has been exceeded.,208,208,0.08972595611115712,-16.782777714573342,0.6679401480568111,0.010280672931112109,0.8668676178475208
+diff_c,least_squares,0,True,`ftol` termination condition is satisfied.,8,40,0.016932807979581303,-24.752720142188714,0.6257397729344485,0.014456552279360603,1.0070633038359988
+diff_c,least_squares,1,True,`ftol` termination condition is satisfied.,6,30,0.016932807979587534,-24.752721183021485,0.6257397132105036,0.014456551756356097,1.007063302362141
+diff_c,least_squares,2,True,`ftol` termination condition is satisfied.,10,50,0.01693280797958337,-24.752720566645998,0.625739747782516,0.014456552066471501,1.0070633032084095
+ratio_p,differential_evolution,seed_20261011,False,Maximum number of iterations has been exceeded.,208,208,0.051584002765292465,1.7054565000484418,1.0621912847286301,3.318882438077443,0.8829970541050121
+ratio_p,least_squares,0,True,`gtol` termination condition is satisfied.,38,182,4.681212562004957e-15,0.8043657644784503,0.6341171854167389,1.7582499650790158,0.9999999999999998
+ratio_p,least_squares,1,True,`gtol` termination condition is satisfied.,1,5,2.0517395067044646,0.8,0.5,1.7,0.8
+ratio_p,least_squares,2,True,`gtol` termination condition is satisfied.,1,5,1.3950150387730182,0.9,0.7,1.9,1.2

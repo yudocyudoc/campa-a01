@@ -1,0 +1,7 @@
+arm,start,success,message,nfev_scipy,residual_calls_total_with_derivatives,train_rmse,tau,excursion,adjustment_rate,degradation,at_parameter_boundary
+fixed_capacity,0,True,`gtol` termination condition is satisfied.,1,5,7.33682261950523e-16,-22.497937084978222,28.75,0.6341171854167359,0.4395624912697545,False
+fixed_capacity,1,True,`gtol` termination condition is satisfied.,10,50,1.3140996356422593e-14,-22.49793708497827,30.238254129859172,0.6341171854167232,0.46231660232934435,False
+fixed_capacity,2,True,`gtol` termination condition is satisfied.,10,50,1.4641964097856388e-14,-22.49793708497824,43.11379360805314,0.63411718541672,0.6591724009198459,False
+cross_capacity,0,True,`xtol` termination condition is satisfied.,18,54,0.01737758573142691,-23.75945818218546,29.910309644744235,0.6270029801533482,0.43343303990674076,False
+cross_capacity,1,True,`xtol` termination condition is satisfied.,23,71,0.017377585731426948,-23.759458190221938,31.571213179426955,0.6270029800400715,0.4575013450966118,False
+cross_capacity,2,True,`xtol` termination condition is satisfied.,22,70,0.017377585731426292,-23.75945829807946,44.70680741626921,0.6270029799540493,0.6478504436662083,False

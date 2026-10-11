@@ -1,0 +1,125 @@
+{
+  "experiment": "A09",
+  "execution": "COMPLETED",
+  "scope": "POSTHOC_CONDITIONAL_STRUCTURAL_ANALYSIS_W016_NOT_BLIND_IDENTIFICATION",
+  "sources": {
+    "A08": {
+      "source_run_id": 38122052685,
+      "source_commit": "9e42b0cb6ee4c50b23df3cfecc49e7597afc73e7",
+      "source_artifact_id": 11694883299,
+      "source_artifact_zip_sha256": "83afa770f087b9da6d47f015687637f7af3c29fd837304e31b51519c4822138b",
+      "model": "W016 G5 first_order_relaxation",
+      "score_from_month": 8,
+      "diff_c": {
+        "tau": -24.752720142188714,
+        "rate": 0.6257397729344485,
+        "gain": 0.014456552279360603,
+        "shape": 1.0070633038359988,
+        "train_rms": 0.016932807979581303,
+        "holdout_median_rms": 0.009338569193045824,
+        "holdout_max_rms": 0.33888159423566333,
+        "holdout_above_0_01": 7
+      },
+      "ratio_p": {
+        "tau": 0.8043657644784503,
+        "rate": 0.6341171854167389,
+        "gain": 1.7582499650790158,
+        "shape": 0.9999999999999998,
+        "train_rms": 4.681212562004957e-15,
+        "holdout_median_rms": 2.5156766927257342e-15,
+        "holdout_max_rms": 7.848326516001765e-15,
+        "holdout_above_0_01": 0
+      },
+      "notes": [
+        "These fit parameters are post hoc from A08, not optimized in A09",
+        "A09 audits internal oracle-only states; it does not select probes or claim discovery"
+      ]
+    },
+    "scenarios": 22,
+    "models": [
+      "world",
+      "diff_c",
+      "ratio_p"
+    ]
+  },
+  "algebraic_conditional_proposition": {
+    "conditional_model_level_obstruction": true,
+    "capacities": [
+      115.0,
+      145.0
+    ],
+    "required_single_rival_gain_by_K": {
+      "115.0": 0.015289130131121896,
+      "145.0": 0.012125861828131159
+    },
+    "required_gain_range": 0.003163268302990737,
+    "assumptions": [
+      "Both drivers are active for a nonzero open demand interval in each K.",
+      "The observation is unclipped and the first-order response rate is shared.",
+      "The rival uses one fixed gain across fields, and WORLD gain is positive.",
+      "Demand can be varied independently of capacity within those active regions."
+    ],
+    "not_a_finite_data_global_certificate": true,
+    "observational_support_counts": {
+      "115.0": {
+        "joint_active_unclipped_training_samples": 35,
+        "distinct_demand_values": 35,
+        "sampled_support_for_open_interval_assumption": false
+      },
+      "145.0": {
+        "joint_active_unclipped_training_samples": 30,
+        "distinct_demand_values": 30,
+        "sampled_support_for_open_interval_assumption": false
+      }
+    },
+    "fitted_rival_rate": 0.6257397729344485,
+    "world_rate": 0.6341171854167359,
+    "equal_relaxation_rate_assumption_satisfied_by_A08_fit": false,
+    "certificate_for_actual_finite_A08_observations": false,
+    "reason_no_finite_certificate": "Finite sampled demand histories do not establish an open intervention interval; A08 rival relaxation differs from the world rate, and clipping/inactivity obstruct inference from observed effective capacity.",
+    "no_global_optimizer_or_new_world_generated": true,
+    "demand_is_endogenous_in_G5": true,
+    "max_endogenous_input_gap_in_joint_active_samples": 1.851643254229458
+  },
+  "scores_reproduced": {
+    "diff_c": {
+      "train_rms_all_points": 0.016932807979581306,
+      "holdout_median_rms": 0.009338569193045822,
+      "holdout_max_rms": 0.3388815942356633,
+      "holdout_heuristic_gt_0_01": 7,
+      "holdout_n": 17
+    },
+    "ratio_p": {
+      "train_rms_all_points": 4.681212562004958e-15,
+      "holdout_median_rms": 2.5156766927257342e-15,
+      "holdout_max_rms": 7.848326516001765e-15,
+      "holdout_heuristic_gt_0_01": 0,
+      "holdout_n": 17
+    }
+  },
+  "euler_max_residual": 4.440892098500626e-16,
+  "input_active_unclipped_by_model": {
+    "world": 176,
+    "diff_c": 148,
+    "ratio_p": 176
+  },
+  "clips_by_model": {
+    "world": 74,
+    "diff_c": 82,
+    "ratio_p": 74
+  },
+  "limitations": [
+    "Uses oracle-only internal states; not implementable from external measurements without observability assumptions.",
+    "Forcing-map slope incompatibility is conditional on active/unclipped open demand intervals and shared relaxation rate.",
+    "The A08 best-fit rival has a different relaxation rate; theorem does not directly certify finite observed trajectories.",
+    "Zero RMS can arise from inactive or clipped regions; analyze each axis separately.",
+    "Retrospective regime labels must not be used to tune probes in A08 or retroactively validate discovery.",
+    "No globally certified numerical lower bound, no calibrated noise, and no new worlds."
+  ],
+  "file_sha256": {
+    "internal_trajectories.csv": "3ef161d5ec5b482f8c561e3b432f05d747cf5f5dc6e590aa3ed83a997e97d94a",
+    "regime_counts.csv": "535a26862477c69b550472039828d17cbef7e5e5da9b99b78d970c822b2e0ee9",
+    "a08_scores_rechecked.csv": "873855fd0f3361ff629e9f11de9158f166d8f2fbb82b466241382de736379301",
+    "euler_identity.csv": "8f06e9a3f161487d0da10cb4ba47c96f37feed62fe9b45713f2460b9e9a5644e"
+  }
+}
