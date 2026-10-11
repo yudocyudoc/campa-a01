@@ -32,7 +32,7 @@ FORECAST_FIELDS=("policy_k","t","incoming_orders","nominal_capacity",
                  "effective_capacity","fulfilled","backlog","cancellations",
                  "customer_base","receivables","cash")
 SNAPSHOT_FIELDS=("t_decision","customer_base","backlog","receivables","cash",
-                 "previous_effective_capacity","previous_nominal_capacity")
+                 "previous_effective_capacity","previous_nominal_capacity","previous_incoming_orders")
 FIT_FAMILIES=("diff_c","ratio_p")
 
 
@@ -61,10 +61,15 @@ def forecast(policy_k:float,snapshot:dict,params,kind:str)->list[dict]:
         raise ValueError("Latent initial state not identifiable from clipped prehistory")
     if not b["minimum_fraction"]<=prev_frac<=1+1e-8:
         raise ValueError("Invalid pre-decision observed capacity")
-    z=max(0.,1.-prev_frac)
     tau,rate,gain,shape=map(float,params)
     if not (0<rate<2 and gain>=0 and math.isfinite(rate+gain+tau+shape)):
         raise ValueError("Unstable or invalid parameters")
+    # t7 observed impact is pre-flow. Predict impact at t8 by evolving
+    # the t7 input using fitted dynamics, NOT by reading a hidden t8 stock.
+    prev_imp=max(0.,1.-prev_frac)
+    prev_orders=float(snapshot["previous_incoming_orders"])
+    z=(1-rate)*prev_imp+rate*_driver(
+        prev_orders,float(snapshot["previous_nominal_capacity"]),params,kind)
     out=[]
     for t in range(DECISION_T,HORIZON_T+1):
         K=float(policy_k)
