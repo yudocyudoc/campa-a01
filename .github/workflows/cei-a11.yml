@@ -1,0 +1,136 @@
+name: CEI | A11 prospective closed-loop intervention
+
+on:
+  pull_request:
+    paths:
+      - 'experiments/A11/**'
+      - 'tests/test_a11.py'
+      - '.github/workflows/cei-a11.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  predecision-producer:
+    name: A11 | history only, no intervention future generated
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    env:
+      MPLBACKEND: Agg
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install original stock flow engine
+        run: python -m pip install "setuptools<82" "jedi>=0.16" "bptk-py[plotting]==3.2.0" "networkx>=3,<4" "scipy>=1.11,<2"
+      - name: Package historical observations and t8 predecision state ONLY
+        run: python -m experiments.A11.public --out results/A11/public
+      - name: Verify no intervention outcomes exist
+        run: |
+          test -f results/A11/public/manifest.json
+          test ! -e results/A11/adjudication
+          test ! -e results/A11/public/holdout_labels.csv
+      - uses: actions/upload-artifact@v4
+        with:
+          name: a11-predecision-only
+          path: results/A11/public/
+          retention-days: 30
+
+  isolated-analyst:
+    name: A11 | fit and predict policies without future orders
+    needs: predecision-producer
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            experiments/A10/contract.py
+            experiments/A10/analyst.py
+            experiments/A11/contract.py
+            experiments/A11/analyst.py
+          sparse-checkout-cone-mode: false
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install "numpy>=1.24,<3" "scipy>=1.11,<2"
+      - uses: actions/download-artifact@v4
+        with:
+          name: a11-predecision-only
+          path: results/A11/public
+      - name: Enforce no G5 generator or held-out intervention results
+        run: |
+          test ! -e experiments/A08/g5_extended_core.py
+          test ! -e experiments/A11/adjudicate.py
+          test ! -e experiments/A11/public.py
+          test ! -e results/A11/adjudication
+          test -e results/A11/public/predecision_snapshot.csv
+      - name: Fit A10 response models and freeze autonomous prospective predictions
+        run: python -m experiments.A11.analyst --public results/A11/public --out results/A11/analyst
+      - uses: actions/upload-artifact@v4
+        with:
+          name: a11-frozen-prospective-forecasts
+          path: results/A11/analyst/
+          retention-days: 30
+
+  prospective-adjudicator:
+    name: A11 | FIRST run WORLD counterfactual actions after forecasts
+    needs: [predecision-producer, isolated-analyst]
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    env:
+      MPLBACKEND: Agg
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install "setuptools<82" "jedi>=0.16" "bptk-py[plotting]==3.2.0" "networkx>=3,<4" "scipy>=1.11,<2"
+      - uses: actions/download-artifact@v4
+        with:
+          name: a11-predecision-only
+          path: results/A11/public
+      - uses: actions/download-artifact@v4
+        with:
+          name: a11-frozen-prospective-forecasts
+          path: results/A11/analyst
+      - name: Confirm there are NO counterfactual WORLD trajectories before this stage
+        run: |
+          test ! -e results/A11/adjudication
+          test -e results/A11/analyst/analyst_freeze.json
+      - name: Simulate all capacity interventions with endogenous orders and score regret
+        run: python -m experiments.A11.adjudicate --public results/A11/public --analyst results/A11/analyst --out results/A11/adjudication
+      - name: Validate scientific record
+        run: python -m json.tool results/A11/adjudication/adjudication.json > /dev/null
+      - name: Archive all outcomes including negative results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: a11-postfreeze-world-results
+          path: results/A11/adjudication/
+          if-no-files-found: warn
+          retention-days: 30
+
+  offline-tests:
+    name: A11 | closed-loop business feedback tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m unittest discover -s tests -p 'test_a11.py' -v

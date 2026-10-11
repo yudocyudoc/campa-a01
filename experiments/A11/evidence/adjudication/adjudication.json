@@ -1,0 +1,95 @@
+{
+  "experiment": "A11",
+  "status": "ADJUDICATED",
+  "true_world": "W016 first_order_relaxation ratio",
+  "policy_menu": [
+    90.0,
+    115.0,
+    145.0,
+    180.0
+  ],
+  "shock_assumed_known": 50.0,
+  "decision_time": 8,
+  "terminal_time": 24,
+  "oracle_best_ex_post": 180.0,
+  "true_policy_terminal_cash": {
+    "90.0": -34213.02353079999,
+    "115.0": -26952.981520843758,
+    "145.0": -3443.7982626298162,
+    "180.0": 19476.153647899628
+  },
+  "decisions": {
+    "noiseless": {
+      "selected_family_before_oracle": "ratio_p",
+      "chosen_policy_before_oracle": 180.0,
+      "oracle_best_policy_ex_post": 180.0,
+      "chosen_cash_t24_true": 19476.153647899628,
+      "no_change_cash_t24_true": -26952.981520843758,
+      "oracle_best_cash_t24_true": 19476.153647899628,
+      "regret_cash": 0.0,
+      "actual_cash_gain_vs_no_change": 46429.135168743385,
+      "counterfactual_action_agrees_with_oracle": true,
+      "forecast_rms_selected_family": {
+        "rms_incoming_orders": 0.0,
+        "rms_effective_capacity": 1.0654012379288596e-12,
+        "rms_backlog": 0.0,
+        "rms_customer_base": 0.0,
+        "rms_cash": 0.0
+      }
+    },
+    "noisy_1pct": {
+      "selected_family_before_oracle": "ratio_p",
+      "chosen_policy_before_oracle": 180.0,
+      "oracle_best_policy_ex_post": 180.0,
+      "chosen_cash_t24_true": 19476.153647899628,
+      "no_change_cash_t24_true": -26952.981520843758,
+      "oracle_best_cash_t24_true": 19476.153647899628,
+      "regret_cash": 0.0,
+      "actual_cash_gain_vs_no_change": 46429.135168743385,
+      "counterfactual_action_agrees_with_oracle": true,
+      "forecast_rms_selected_family": {
+        "rms_incoming_orders": 0.0,
+        "rms_effective_capacity": 0.004309185875605437,
+        "rms_backlog": 0.0,
+        "rms_customer_base": 0.0,
+        "rms_cash": 0.0
+      }
+    }
+  },
+  "mechanism_policy_negative_control": {
+    "noiseless": {
+      "preferred_policy_by_family": {
+        "diff_c": 180.0,
+        "ratio_p": 180.0
+      },
+      "policy_depends_on_mechanism_within_library": false,
+      "mechanism_discriminates_capacity_policy": false,
+      "scientific_note": "If both families choose the same policy, correct action does not establish a marginal CEI mechanistic advantage."
+    },
+    "noisy_1pct": {
+      "preferred_policy_by_family": {
+        "diff_c": 180.0,
+        "ratio_p": 180.0
+      },
+      "policy_depends_on_mechanism_within_library": false,
+      "mechanism_discriminates_capacity_policy": false,
+      "scientific_note": "If both families choose the same policy, correct action does not establish a marginal CEI mechanistic advantage."
+    }
+  },
+  "scientific_claim": "PROSPECTIVE_SCENARIO_PREDICTION_WITH_STIPULATED_BUSINESS_MODEL",
+  "limits": [
+    "All non-response business feedback equations and coefficients are supplied to the analyst.",
+    "Response candidate grammar includes the exact WORLD family; not blind structural discovery.",
+    "Past cases and interventions share a publicly known synthetic world W016.",
+    "Future market shock magnitude and the selected capacity are given as exogenous inputs.",
+    "Future orders are NEVER given to the analyst; they are forecast from endogenous customer feedback.",
+    "Regret compares only four predefined capacities on terminal cash, not general strategic optimality.",
+    "The future WORLD is noiseless; noise on historical training observations only.",
+    "Both candidate families may rank the same capacity policy, in which case a correct decision does not evidence mechanistic value-add."
+  ],
+  "sha256": {
+    "world_policy_outcomes.csv": "57e63d6a1f6e25a193efcc8cef32386e27b13e7bca792824375fa530df4cbc42",
+    "forecast_error_by_policy.csv": "97be59ef4a335e22b774bd9c19e1d64fb816ca0175a910f11f03f48a8dfc1623",
+    "analyst_freeze.json": "5374a6ff6347bd3d382d05f297f14338084e1f1980a0f9a20633f42d987ae7ee"
+  }
+}

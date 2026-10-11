@@ -1,0 +1,26 @@
+{
+  "all_crossfile_sha256_verified": true,
+  "experiment": "A11",
+  "no_future_orders_shared_to_analyst": true,
+  "scientific_commit": "f9f8fba38873e7397f8e11d2089a7c4f279a9c48",
+  "sha256_by_stage": {
+    "adjudication": {
+      "adjudication.json": "f646257ba038caf7983797f5abf8f5500b996de35dfde60b2312240f149232ec",
+      "forecast_error_by_policy.csv": "97be59ef4a335e22b774bd9c19e1d64fb816ca0175a910f11f03f48a8dfc1623",
+      "world_policy_outcomes.csv": "57e63d6a1f6e25a193efcc8cef32386e27b13e7bca792824375fa530df4cbc42"
+    },
+    "analyst": {
+      "analyst_freeze.json": "5374a6ff6347bd3d382d05f297f14338084e1f1980a0f9a20633f42d987ae7ee",
+      "closedloop_forecasts.csv": "e64bda327d35e0e7088baed63ff04e5783032175aef5feb4a3e094deaf02ffee",
+      "training_optimizer_attempts.json": "55a591b6115733fea2fd2eee581eac4f7c684f186622415613b9439607756cb3"
+    },
+    "public": {
+      "manifest.json": "4af408b4d6fa18ca9162ec02924a65e5644a34a7fa0b2c9536c47978e9996031",
+      "predecision_snapshot.csv": "68f0dfa781a4a614a0884c5f725946e5b191de3a78f572f729d0014ba856f7bd",
+      "train_noiseless.csv": "94c93ef4057e2f03b7b0b185a09bc93410a9514a3bb0061c01aca8ae7006ab01",
+      "train_noisy_1pct.csv": "c956918b90197985f984c9b4da7ecf30e7f6e0cd40f499f8e77e154681bc1839"
+    }
+  },
+  "source": "original CI artifacts, extracted unchanged",
+  "source_run_id": 38183774855
+}

@@ -1,0 +1,200 @@
+{
+  "experiment": "A11",
+  "phase": "FORECASTS_FROZEN_BEFORE_ANY_INTERVENTION_WORLD",
+  "selected_policies_by_arm": {
+    "noiseless": {
+      "fit_by_family": {
+        "diff_c": {
+          "family": "diff_c",
+          "method": "TRF",
+          "start": "1",
+          "train_rms": 0.01582914073852998,
+          "nfev": 7,
+          "calls_including_jacobian": 35,
+          "success": true,
+          "params": [
+            -16.25200177143108,
+            0.6254945424005154,
+            0.013841890725307456,
+            0.9317350878254456
+          ]
+        },
+        "ratio_p": {
+          "family": "ratio_p",
+          "method": "TRF",
+          "start": "0",
+          "train_rms": 6.369001127777167e-13,
+          "nfev": 13,
+          "calls_including_jacobian": 61,
+          "success": true,
+          "params": [
+            0.8043657644788427,
+            0.6341171854167286,
+            1.7582499650781587,
+            0.9999999999998082
+          ]
+        }
+      },
+      "training_gap": 0.01582914073789308,
+      "abstention_threshold": 0.005,
+      "selected_family": "ratio_p",
+      "chosen_policy_k": 180.0,
+      "benchmark_no_change_capacity": 115.0,
+      "predicted_terminal_by_family": {
+        "diff_c": {
+          "90.0": {
+            "predicted_final_cash": -34269.87526748192,
+            "predicted_final_backlog": 1081.1628130013682,
+            "predicted_final_orders": 132.6093355272626,
+            "predicted_final_effective_capacity": 36.0
+          },
+          "115.0": {
+            "predicted_final_cash": -26824.494136177706,
+            "predicted_final_backlog": 976.3642846977077,
+            "predicted_final_orders": 135.11269466445054,
+            "predicted_final_effective_capacity": 46.0
+          },
+          "145.0": {
+            "predicted_final_cash": -4989.230909744998,
+            "predicted_final_backlog": 544.5348735208939,
+            "predicted_final_orders": 143.71620596593942,
+            "predicted_final_effective_capacity": 93.29629129839743
+          },
+          "180.0": {
+            "predicted_final_cash": 19476.153647899628,
+            "predicted_final_backlog": 0.0,
+            "predicted_final_orders": 152.95999999999998,
+            "predicted_final_effective_capacity": 178.25943349316177
+          }
+        },
+        "ratio_p": {
+          "90.0": {
+            "predicted_final_cash": -34213.023530801715,
+            "predicted_final_backlog": 1080.862840246639,
+            "predicted_final_orders": 132.6324190404643,
+            "predicted_final_effective_capacity": 36.0
+          },
+          "115.0": {
+            "predicted_final_cash": -26952.981520850146,
+            "predicted_final_backlog": 977.1941400260566,
+            "predicted_final_orders": 135.06314035311902,
+            "predicted_final_effective_capacity": 46.0
+          },
+          "145.0": {
+            "predicted_final_cash": -3443.798262694738,
+            "predicted_final_backlog": 520.2616073831298,
+            "predicted_final_orders": 144.19149199959742,
+            "predicted_final_effective_capacity": 95.13339980534253
+          },
+          "180.0": {
+            "predicted_final_cash": 19476.153647899628,
+            "predicted_final_backlog": 0.0,
+            "predicted_final_orders": 152.95999999999998,
+            "predicted_final_effective_capacity": 167.12506489826552
+          }
+        }
+      },
+      "chosen_policy_rule": "max predicted cash_t24, tied -> smaller K; abstention -> K115"
+    },
+    "noisy_1pct": {
+      "fit_by_family": {
+        "diff_c": {
+          "family": "diff_c",
+          "method": "TRF",
+          "start": "1",
+          "train_rms": 0.01708021756970229,
+          "nfev": 11,
+          "calls_including_jacobian": 39,
+          "success": true,
+          "params": [
+            -16.0060247471063,
+            0.6270748776317001,
+            0.013939314680077999,
+            0.9319732912140527
+          ]
+        },
+        "ratio_p": {
+          "family": "ratio_p",
+          "method": "TRF",
+          "start": "0",
+          "train_rms": 0.00941724093778554,
+          "nfev": 19,
+          "calls_including_jacobian": 71,
+          "success": true,
+          "params": [
+            0.8094858372246022,
+            0.6340130994591994,
+            1.7626562950730775,
+            0.9992233167845199
+          ]
+        }
+      },
+      "training_gap": 0.00766297663191675,
+      "abstention_threshold": 0.005,
+      "selected_family": "ratio_p",
+      "chosen_policy_k": 180.0,
+      "benchmark_no_change_capacity": 115.0,
+      "predicted_terminal_by_family": {
+        "diff_c": {
+          "90.0": {
+            "predicted_final_cash": -34260.14328114827,
+            "predicted_final_backlog": 1081.1114631056575,
+            "predicted_final_orders": 132.61328700611142,
+            "predicted_final_effective_capacity": 36.0
+          },
+          "115.0": {
+            "predicted_final_cash": -26818.912669437275,
+            "predicted_final_backlog": 976.3400109755298,
+            "predicted_final_orders": 135.11505003224087,
+            "predicted_final_effective_capacity": 46.0
+          },
+          "145.0": {
+            "predicted_final_cash": -4884.841808410927,
+            "predicted_final_backlog": 543.0008327971906,
+            "predicted_final_orders": 143.75047738164338,
+            "predicted_final_effective_capacity": 93.44426682218874
+          },
+          "180.0": {
+            "predicted_final_cash": 19476.153647899628,
+            "predicted_final_backlog": 0.0,
+            "predicted_final_orders": 152.95999999999998,
+            "predicted_final_effective_capacity": 178.86775970165243
+          }
+        },
+        "ratio_p": {
+          "90.0": {
+            "predicted_final_cash": -34202.551117158415,
+            "predicted_final_backlog": 1080.8075835569991,
+            "predicted_final_orders": 132.63667115504703,
+            "predicted_final_effective_capacity": 36.0
+          },
+          "115.0": {
+            "predicted_final_cash": -26938.348543203923,
+            "predicted_final_backlog": 977.1159852801817,
+            "predicted_final_orders": 135.06906550692338,
+            "predicted_final_effective_capacity": 46.0
+          },
+          "145.0": {
+            "predicted_final_cash": -3327.53810880502,
+            "predicted_final_backlog": 518.6792170107109,
+            "predicted_final_orders": 144.23011486106026,
+            "predicted_final_effective_capacity": 95.26816069709469
+          },
+          "180.0": {
+            "predicted_final_cash": 19476.153647899628,
+            "predicted_final_backlog": 0.0,
+            "predicted_final_orders": 152.95999999999998,
+            "predicted_final_effective_capacity": 167.63396667839353
+          }
+        }
+      },
+      "chosen_policy_rule": "max predicted cash_t24, tied -> smaller K; abstention -> K115"
+    }
+  },
+  "public_manifest_sha256": "4af408b4d6fa18ca9162ec02924a65e5644a34a7fa0b2c9536c47978e9996031",
+  "snapshot_sha256": "68f0dfa781a4a614a0884c5f725946e5b191de3a78f572f729d0014ba856f7bd",
+  "forecast_sha256": "e64bda327d35e0e7088baed63ff04e5783032175aef5feb4a3e094deaf02ffee",
+  "attempts_sha256": "55a591b6115733fea2fd2eee581eac4f7c684f186622415613b9439607756cb3",
+  "NO_FUTURE_ORDERS_READ": true,
+  "explicit_nonblind_assumption": "The business feedback equations and coefficients are stipulated; only the response model family and its parameters were fitted."
+}
