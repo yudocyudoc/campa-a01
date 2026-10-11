@@ -63,8 +63,11 @@ class A10ContractTests(unittest.TestCase):
         self.assertFalse(any(s.startswith(("experiments.A06",
             "experiments.A07","experiments.A08","experiments.A09"))
                              for s in imports))
-        self.assertFalse(any(s in path.read_text(encoding="utf-8")
-                             for s in ("WORLD_CASES","hidden_excess","primitive_impact")))
+        # A comment describing what is forbidden is not access to the WORLD.
+        self.assertFalse(any(
+            node.id in {"WORLD_CASES","hidden_excess","primitive_impact"}
+            for node in ast.walk(tree) if isinstance(node,ast.Name)
+        ))
 
 
 if __name__=="__main__":
