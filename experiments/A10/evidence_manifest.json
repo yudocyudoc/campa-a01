@@ -1,0 +1,29 @@
+{
+  "experiment": "A10",
+  "original_artifact_data": "unaltered extracted CSV/JSON",
+  "sha256_by_boundary": {
+    "adjudicated": {
+      "adjudication.json": "089e1788444f6d0aba915a56557f528d041c6fa5ac34fc38554ba8bf5a87d08d",
+      "scenario_scores.csv": "2291f244836257f19307ad50f9e5f598e3b7cfbbf575cf5a6484a3b4775b8e39"
+    },
+    "analyst": {
+      "analyst_report.json": "d1726f228644bc4ffbfcc1421bbb2982843cddb6adaed3ae27996af37ed7b221",
+      "predicted_all_holdouts.csv": "73d8303bd48b7f59d289d5b39e4725c462c4bf6ceadd2e6fea10784436507225",
+      "training_optimizers.json": "d4fcf3906a12287a332d5194a4a3b6610b45958d61a63e3b8e0189bc8c102303"
+    },
+    "public": {
+      "holdout_inputs.csv": "c31868e60fecc909ae39977a28e06dda1f369eacb7f76d0d8016140502659b14",
+      "public_manifest.json": "2db5abccbb6d59373b7fba4a9693ba60e03dcfdd71b9e44f32d05d51bddff514",
+      "train_noiseless.csv": "94c93ef4057e2f03b7b0b185a09bc93410a9514a3bb0061c01aca8ae7006ab01",
+      "train_noisy_1pct.csv": "c956918b90197985f984c9b4da7ecf30e7f6e0cd40f499f8e77e154681bc1839"
+    },
+    "sealed": {
+      "holdout_labels_noiseless.csv": "0f5b731aa789d7c364a42d2525d487db0bef537bf38f81f9f684055a3687a952",
+      "holdout_labels_noisy_1pct.csv": "fe7205e0f4b4e38fac586b8e98030a34f7b5b9bc21ebaac59ab79f06256fff91",
+      "sealed_truth.json": "c2ef79ceea8c03ab3a8e8458e5f256ff1fdbe247bc1020e0e1ceb298fae4b859"
+    }
+  },
+  "source_experiment_commit": "a715e2511b89a21645e94dd7d3bd2cd859672b46",
+  "source_workflow_run": 38126170978,
+  "validated_dependency_hashes": true
+}
