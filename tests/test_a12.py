@@ -52,9 +52,11 @@ class TestA12(unittest.TestCase):
         # ratio_p wants 145, diff_c wants 150. Both have a range of 200.
         # One loses 20 and the other loses 2, so 5% two-sided gate FAILS.
         m={
-            "ratio_p":{90.:0.,145.:200.,150.:180.,260.:10.},
-            "diff_c":{90.:0.,145.:198.,150.:200.,260.:10.},
+            "ratio_p":{k:0. for k in CAPACITIES},
+            "diff_c":{k:0. for k in CAPACITIES},
         }
+        m["ratio_p"].update({145.:200.,150.:180.,260.:10.})
+        m["diff_c"].update({145.:198.,150.:200.,260.:10.})
         # Use small hand-coded menu to test gate algebra in isolation.
         x=best_gains(m,self.snapshot(),50.)
         self.assertFalse(x["same_policy"])
@@ -64,9 +66,11 @@ class TestA12(unittest.TestCase):
 
     def test_two_sided_material_opportunity_is_recognized(self):
         m={
-            "ratio_p":{90.:0.,145.:200.,150.:180.,260.:10.},
-            "diff_c":{90.:0.,145.:180.,150.:200.,260.:10.},
+            "ratio_p":{k:0. for k in CAPACITIES},
+            "diff_c":{k:0. for k in CAPACITIES},
         }
+        m["ratio_p"].update({145.:200.,150.:180.,260.:10.})
+        m["diff_c"].update({145.:180.,150.:200.,260.:10.})
         x=best_gains(m,self.snapshot(),50.)
         self.assertTrue(x["material_disagreement"])
         self.assertAlmostEqual(x["symmetric_material_fraction"],.10)
