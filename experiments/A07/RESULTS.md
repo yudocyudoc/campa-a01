@@ -1,6 +1,6 @@
 # A07 · Resultado de la campaña adversarial
 
-**Fecha de ejecución:** 2026-10-11 (UTC)  
+**Corrección interpretativa posterior:** [POSTHOC_REVIEW.md](POSTHOC_REVIEW.md) documenta una redundancia algebraica exacta, confirma todas las cifras con los CSV/JSON y explica que la selección de holdouts conoce la parametrización generadora. Este archivo conserva los resultados históricos y las etiquetas originales.\n\n**Fecha de ejecución:** 2026-10-11 (UTC)  
 **Corrida:** [GitHub Actions 38119372061](https://github.com/yudocyudoc/campa-a01/actions/runs/38119372061)  
 **Artefacto:** [`a07-adversarial-refit-results`](https://github.com/yudocyudoc/campa-a01/actions/runs/38119372061/artifacts/11694684262), cinco archivos (disponibilidad limitada por política de retención de GitHub).  
 **Resultado técnico:** `COMPLETED`; pruebas unitarias y regresión general aprobadas.  
@@ -52,7 +52,7 @@ En el brazo K=115, las tres soluciones tuvieron:
 - tasa de ajuste `≈ 0.634117`;
 - diferentes parejas escala/ganancia: `(28.75, 0.43956)`, `(30.23825, 0.46232)`, `(43.11379, 0.65917)`.
 
-La razón `ganancia / escala` permanece aproximadamente constante. Son evidencias de una **dirección redundante de parametrización** en el régimen evaluado: diferentes valores numéricos pueden producir las mismas trayectorias. No debe atribuirse a cada parámetro un significado recuperado de manera única.
+La razón `ganancia / escala` permanece aproximadamente constante. **Auditoría posterior:** para esta dinámica lineal de primer orden y estado latente inicial cero, es una identidad algebraica exacta: el modelo tiene tres grados de libertad efectivos (`tau`, tasa de ajuste, `ganancia/escala`), no cuatro. Las diferentes combinaciones de escala y ganancia son representaciones equivalentes, no recuperaciones independientes de parámetros. No debe atribuirse a cada parámetro un significado recuperado de manera única.
 
 ### 4. El método de diseño seleccionó las mismas cuatro intervenciones en ambos brazos
 
