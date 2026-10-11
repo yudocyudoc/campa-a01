@@ -192,7 +192,13 @@ def run(out:Path)->dict:
                     for name in BASELINES for fam in FAMILIES},
             })
     count={arm:sum(r["passes_5pct_symmetric"] for r in scenario_records if r["arm"]==arm) for arm in ARMS}
-    qualified=count[ARMS[0]]>=MIN_SHOCK_COUNT and count[ARMS[1]]>=MIN_SHOCK_COUNT
+    # A shock must qualify in BOTH noisy/noiseless arms to count toward the
+    # one-third robustness gate; two disjoint qualifying sets are insufficient.
+    common_qualified=[shock for shock in SHOCKS if all(
+        r["passes_5pct_symmetric"] for r in scenario_records
+        if r["shock"]==shock
+    )]
+    qualified=len(common_qualified)>=MIN_SHOCK_COUNT
     # Robust selection uses MIN across arms of same shock, with deterministic ties.
     ranked=[]
     for shock in SHOCKS:
@@ -219,18 +225,24 @@ def run(out:Path)->dict:
         "grid":{"shocks":SHOCKS,"capacities":CAPACITIES,"arms":ARMS,"families":FAMILIES},
         "materiality_criterion":{
             "each_model_regret_at_least_fraction_of_own_cash_range":MATERIAL_FRACTION,
-            "qualifying_shocks_required_per_arm":MIN_SHOCK_COUNT,
+            "qualifying_shocks_required_in_both_arms":MIN_SHOCK_COUNT,
             "required_fraction_of_shocks":MIN_SHOCK_COUNT/len(SHOCKS),
             "regret_definition":"Model's optimum cash minus cash when following other model's preferred policy",
             "both_models_must_prefer_different_capacity":True,
             "reason":"Screen meaningful decision differences, not visual mechanism gaps",
         },
         "qualifying_by_arm":count,
+        "qualifying_in_both_arms":len(common_qualified),
+        "qualifying_shock_values":common_qualified,
         "different_recommendations_by_arm":{
             arm:sum(r["models_disagree"] for r in scenario_records if r["arm"]==arm)
             for arm in ARMS
         },
         "candidate_only_best_exploratory_shock":candidate_choice,
+        "world_adjudication_shock_if_authorized":(
+            next((r["shock"] for r in ranked if r["passes_both_arms"]),None)
+            if qualified else None
+        ),
         "ranked_candidate_shocks":ranked,
         "authorization_for_world":qualified,
         "naive_benchmarks":list(BASELINES),
