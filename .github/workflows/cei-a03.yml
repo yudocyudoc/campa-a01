@@ -1,0 +1,52 @@
+name: CEI | A03 reproduccion G5
+
+on:
+  pull_request:
+    paths:
+      - 'experiments/A03/**'
+      - '.github/workflows/cei-a03.yml'
+      - 'tests/test_a03.py'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: a03-g5-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  reproduce-g5:
+    name: A03 | original 40-world benchmark
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    env:
+      MPLBACKEND: Agg
+      PYTHONUNBUFFERED: "1"
+      OPENBLAS_NUM_THREADS: "1"
+      OMP_NUM_THREADS: "1"
+      CEI_A03_RESULTS_DIR: results/A03
+    steps:
+      - name: Checkout public experiment
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install original scientific environment
+        run: |
+          python -m pip install "setuptools<82" "jedi>=0.16" "bptk-py[plotting]==3.2.0" "networkx>=3,<4"
+      - name: Validate independent G5 adjudicator
+        run: python -m unittest discover -s tests -p 'test_a03.py' -v
+      - name: Run original G5 40-world study (unaltered science)
+        run: python experiments/A03/g5_source_reproduction.py
+      - name: Verify every world against archived run
+        run: python experiments/A03/verify_reproduction.py --input results/A03
+      - name: Preserve experiment artifacts even if verification fails
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: a03-g5-40-world-results
+          path: results/A03/
+          if-no-files-found: warn
+          retention-days: 30
