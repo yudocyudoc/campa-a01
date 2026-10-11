@@ -1,0 +1,2 @@
+# A01 smoke uses Python standard library only.
+# Add version-pinned scientific dependencies in a later dedicated PR.
