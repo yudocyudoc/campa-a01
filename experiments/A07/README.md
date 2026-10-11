@@ -1,6 +1,6 @@
 # A07 · Adversario reajustable entre razón y diferencia
 
-**Pregunta:** si el modelo rival que utiliza `pedidos − capacidad` puede ajustar parámetros a observaciones de entrenamiento del WORLD, ¿existe una perturbación **fuera de entrenamiento** en la que diverja de la explicación `pedidos / capacidad`?
+**Nota de auditoría post hoc (2026-10-11):** [POSTHOC_REVIEW.md](POSTHOC_REVIEW.md) corrige la parametrización efectiva (3, no 4 grados de libertad), la interpretación de los brazos y el sentido de «holdout». Los resultados históricos no se alteran.\n\n**Pregunta:** si el modelo rival que utiliza `pedidos − capacidad` puede ajustar parámetros a observaciones de entrenamiento del WORLD, ¿existe una perturbación **fuera de entrenamiento** en la que diverja de la explicación `pedidos / capacidad`?
 
 ## Continuidad científica
 
@@ -15,13 +15,13 @@ Se reutilizan **sin modificación** las ecuaciones BPTK-Py originales de G5 expo
 
 Modelo verdadero, conocido a priori por el evaluador: activador basado en `incoming_orders / nominal_capacity`.
 
-Adversario: activador `incoming_orders − nominal_capacity`, con cuatro grados efectivos de libertad:
+Adversario: activador `incoming_orders − nominal_capacity`, con **cuatro parámetros numéricos ajustados, pero solo tres grados de libertad efectivos** para esta familia y estado inicial:
 - ubicación efectiva del umbral `tau = baseline + threshold × excursion`;
 - escala positiva `excursion`;
 - tasa de ajuste del stock latente;
 - ganancia de degradación de la capacidad.
 
-La combinación `baseline + threshold × excursion` elimina redundancia algebraica de parametrización: fijar el valor explícito `threshold` no restringe las funciones de activación representables mientras `baseline` siga libre.
+La combinación `baseline + threshold × excursion` elimina una redundancia algebraica, pero **queda otra exacta**: el impacto observable solo depende del cociente `degradation / excursion`, junto con `tau` y `adjustment_rate` (estado latente inicial nulo). Véase la derivación en [POSTHOC_REVIEW.md](POSTHOC_REVIEW.md).
 
 Se conservan familia dinámica, stocks, causalidad del bucle y el resto de ecuaciones de G5. **No se reajusta ningún parámetro después de elegir y consultar los holdouts.**
 
