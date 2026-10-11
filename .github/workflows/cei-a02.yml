@@ -1,0 +1,45 @@
+name: CEI | A02 reproduccion c0.0
+
+on:
+  pull_request:
+    paths:
+      - 'experiments/A02/**'
+      - '.github/workflows/cei-a02.yml'
+      - 'tests/test_a02.py'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  reproduce-c00:
+    name: A02 | BPTK-Py original world
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      MPLBACKEND: Agg
+      CEI_A02_RESULTS_DIR: results/A02
+    steps:
+      - name: Checkout public laboratory
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install original SD engine
+        run: |
+          python -m pip install "setuptools<82" "jedi>=0.16" "bptk-py[plotting]==3.2.0" "networkx>=3,<4"
+      - name: Offline verifier tests
+        run: python -m unittest discover -s tests -p 'test_a02.py' -v
+      - name: Reproduce source C0.0 world and original gates
+        run: python experiments/A02/c00_source_reproduction.py
+      - name: Compare against archived 14 gates and numerical anchors
+        run: python experiments/A02/verify_reproduction.py --input results/A02
+      - name: Upload A02 evidence even on failed validation
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: a02-c00-reproduction
+          path: results/A02/
+          if-no-files-found: warn
+          retention-days: 30
