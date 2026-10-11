@@ -1,0 +1,47 @@
+name: CEI | A09 regime observability
+
+on:
+  pull_request:
+    paths:
+      - 'experiments/A09/**'
+      - 'tests/test_a09.py'
+      - '.github/workflows/cei-a09.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  regime-audit:
+    name: A09 | activation clipping and conditional separation
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      MPLBACKEND: Agg
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install original stock-flow engine
+        run: |
+          python -m pip install "setuptools<82" "jedi>=0.16" "bptk-py[plotting]==3.2.0" "networkx>=3,<4" "scipy>=1.11,<2"
+      - name: Run offline analytical tests
+        run: python -m unittest discover -s tests -p 'test_a09.py' -v
+      - name: Reproduce A08 5+17 worlds with internal regime probes
+        run: python -m experiments.A09.experiment --out results/A09
+      - name: Validate output manifest
+        run: python -m json.tool results/A09/summary.json > /dev/null
+      - name: Archive all results, even with mismatch
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: a09-conditional-regime-audit
+          path: results/A09/
+          if-no-files-found: warn
+          retention-days: 30
