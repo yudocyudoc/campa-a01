@@ -37,4 +37,4 @@ No hay regla retrospectiva que fuerce éxito. El resultado informa:
 - Las opciones se limitan a cuatro cambios de capacidad y un horizonte finito; la caja t24 es una función objetivo artificialmente simplificada.
 - No se demuestra identificabilidad global ni extrapolación a una empresa real.
 
-**Evidencia:** archivada en tres artefactos separados: pre-decisión, predicciones congeladas, adjudicación futura (se copiarán a Git con hashes una vez verificadas).
+**Evidencia permanente:** los 10 archivos crudos originales de las tres etapas están disponibles en [\`evidence/\`](evidence/), con [\`evidence_manifest.json\`](evidence_manifest.json) y SHA-256 verificados contra la corrida original. Se eliminó el workflow de archivado con permiso de escritura.
