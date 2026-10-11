@@ -2,6 +2,7 @@
 
 **Diseño:** [README](README.md).  
 **Primera ejecución validada:** [GitHub Actions 38183600988](https://github.com/yudocyudoc/campa-a01/actions/runs/38183600988) — los cuatro jobs de producción/analista/adjudicación/tests finalizaron exitosamente.  
+**Evidencia permanente:** [10 archivos originales de los tres jobs](evidence/) y [manifiesto SHA-256 verificado](evidence_manifest.json), extraídos sin transformación de la corrida 38183774855. El workflow temporal de archivado fue retirado.  
 **Nota de auditoría:** el hallazgo del control negativo sobre `diff_c` se detectó *después* de la corrida al leer los pronósticos originales congelados. Se añadió un campo de diagnóstico al adjudicador para que futuras ejecuciones también lo reporten automáticamente; **no se modifican predicciones, entrenamiento ni regla de elección**.
 
 ## Resultado prospectivo registrado antes de consultar WORLD
