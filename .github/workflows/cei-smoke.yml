@@ -1,0 +1,36 @@
+name: CEI | smoke reproducible
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  a01-smoke:
+    name: A01 | Python deterministic smoke
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout public experiment
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run offline tests
+        run: python -m unittest discover -s tests -p "test_*.py" -v
+      - name: Produce A01 artifacts
+        run: python experiments/A01/experiment.py --out results/A01
+      - name: Verify generated JSON
+        run: python -m json.tool results/A01/manifest.json > /dev/null
+      - name: Publish reproducibility artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: a01-smoke-results
+          path: results/A01/
+          if-no-files-found: error
+          retention-days: 14
