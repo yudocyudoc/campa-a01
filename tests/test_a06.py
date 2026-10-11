@@ -6,7 +6,7 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parents[1] / "experiments" / "A06"
 sys.path.insert(0, str(HERE))
-from experiment import (  # noqa: E402
+from experiments.A06.experiment import (  # noqa: E402
     K0, PROBES, REPAIRS, RATIO_ID, DIFF_ID,
     deterministic_selection, normalized_signals, TRUTH, PRIMITIVE,
 )
