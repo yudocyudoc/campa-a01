@@ -1,0 +1,131 @@
+{
+  "experiment": "A10b",
+  "seeds": [
+    20261011,
+    20261012,
+    20261013,
+    20261014,
+    20261015,
+    20261016,
+    20261017,
+    20261018,
+    20261019,
+    20261020
+  ],
+  "stage": "ALL_DECISIONS_FROZEN_BEFORE_ANY_SEALED_LABELS",
+  "optimizer_and_abstention_rules": "UNCHANGED_A10",
+  "seed_results": [
+    {
+      "seed": 20261011,
+      "decision": "ratio_p",
+      "rms_diff_c": 0.01708021756970229,
+      "rms_ratio_p": 0.00941724093778554,
+      "training_margin": 0.00766297663191675,
+      "predicted_informative_steps": 89,
+      "predicted_all_inactive_scenarios": 7,
+      "report_sha256": "583b74bdef87b0704af6f59c683186a02d72522455967ee5d3d42ff679ad60cb",
+      "predictions_sha256": "a945de98f7d4c61c0ed95efe0dc061b7eeea310bef562381f748e8c09aa1d39f"
+    },
+    {
+      "seed": 20261012,
+      "decision": "ratio_p",
+      "rms_diff_c": 0.01954166574126751,
+      "rms_ratio_p": 0.009471830624091203,
+      "training_margin": 0.010069835117176306,
+      "predicted_informative_steps": 91,
+      "predicted_all_inactive_scenarios": 7,
+      "report_sha256": "413b53676f96ff98703a4dc749ddc86cac035162f4d191ad1788782dcfd5e25b",
+      "predictions_sha256": "a11ba6cc3cdf74712428aac8e8ad77c01da556010224031a046cb3f081ec4a56"
+    },
+    {
+      "seed": 20261013,
+      "decision": "ratio_p",
+      "rms_diff_c": 0.017715705259901852,
+      "rms_ratio_p": 0.010117903253490079,
+      "training_margin": 0.007597802006411773,
+      "predicted_informative_steps": 92,
+      "predicted_all_inactive_scenarios": 7,
+      "report_sha256": "1676b2c9bd69fda2ea79444c1b88fea6ab9299490a0a13289fe081ebfd63be31",
+      "predictions_sha256": "2c4ba8cfdeafa6e3c10f464afa83483d27fb4857b2e187ee3cd26f7503ea2b0e"
+    },
+    {
+      "seed": 20261014,
+      "decision": "ratio_p",
+      "rms_diff_c": 0.0180140925990454,
+      "rms_ratio_p": 0.008512783718008595,
+      "training_margin": 0.009501308881036804,
+      "predicted_informative_steps": 89,
+      "predicted_all_inactive_scenarios": 7,
+      "report_sha256": "b1328cda10b2759877fb9e4c77dddb0aea01fb2bb51de141390f6198ef36eb8a",
+      "predictions_sha256": "f7974568e3500b12357804be88e419f856b615560da2dadd0c38e3538cfe0be4"
+    },
+    {
+      "seed": 20261015,
+      "decision": "ratio_p",
+      "rms_diff_c": 0.017398215236845004,
+      "rms_ratio_p": 0.008933488861231166,
+      "training_margin": 0.008464726375613837,
+      "predicted_informative_steps": 89,
+      "predicted_all_inactive_scenarios": 7,
+      "report_sha256": "0ebab4e5d662e623cd74632db9e7c7d744e181d68f923b97f2b42eab3d88df9b",
+      "predictions_sha256": "e8f69b426e54eb0d34313b01e4a8641a3d587bb5ef6cfa21c508de9a69cd504d"
+    },
+    {
+      "seed": 20261016,
+      "decision": "ratio_p",
+      "rms_diff_c": 0.018318761448131906,
+      "rms_ratio_p": 0.009862342558728272,
+      "training_margin": 0.008456418889403634,
+      "predicted_informative_steps": 87,
+      "predicted_all_inactive_scenarios": 7,
+      "report_sha256": "b6b9445554432575afcdaf74eeb0ea41a78f8cb49cb399fd4016e82cc928029a",
+      "predictions_sha256": "7ef595bfdad120116748610d5a973f7e24fca37cfc7a666695b57abfcebee3f1"
+    },
+    {
+      "seed": 20261017,
+      "decision": "ratio_p",
+      "rms_diff_c": 0.01813220593690396,
+      "rms_ratio_p": 0.008401303330672422,
+      "training_margin": 0.009730902606231537,
+      "predicted_informative_steps": 91,
+      "predicted_all_inactive_scenarios": 7,
+      "report_sha256": "0ae4a8de744e1be3fedd14b07b5c2a40cb1758c99061fd1e6a6529ded754b105",
+      "predictions_sha256": "167a599f721efe90161c7ce93182ee08a4d16146caf648a25b1993a8b39ea804"
+    },
+    {
+      "seed": 20261018,
+      "decision": "ratio_p",
+      "rms_diff_c": 0.019475895287146067,
+      "rms_ratio_p": 0.009965736711018766,
+      "training_margin": 0.009510158576127302,
+      "predicted_informative_steps": 92,
+      "predicted_all_inactive_scenarios": 7,
+      "report_sha256": "fc4609a61630e644bb0d271896e7112e15f0fe4180c6ee5b234757bcaf7ce0de",
+      "predictions_sha256": "a5dc0e4b5fc8dc683f740ba7f7e2896f0b76f0e179642800a54f8fb4aee6ef13"
+    },
+    {
+      "seed": 20261019,
+      "decision": "ratio_p",
+      "rms_diff_c": 0.01875084755145115,
+      "rms_ratio_p": 0.009293341517975834,
+      "training_margin": 0.009457506033475315,
+      "predicted_informative_steps": 89,
+      "predicted_all_inactive_scenarios": 7,
+      "report_sha256": "46f0589f19352d5535ac36124ff61cfe915b2affe4aaab3bbe349343de419993",
+      "predictions_sha256": "14d91dd5ed8a73683aecc318b7e2cbcaccbaa9ec2c455e3d70c2b104f7f6853f"
+    },
+    {
+      "seed": 20261020,
+      "decision": "ratio_p",
+      "rms_diff_c": 0.018406780763484468,
+      "rms_ratio_p": 0.010147805712046843,
+      "training_margin": 0.008258975051437625,
+      "predicted_informative_steps": 93,
+      "predicted_all_inactive_scenarios": 7,
+      "report_sha256": "0a86a18ec7019fadd2d6ecf2ba56283fb7c3f3c935f1c52b580f0d1bc96b48d1",
+      "predictions_sha256": "901be316ee20b308bf68372e81e877c5bcbf75b75173bc3e1b03310d5feca332"
+    }
+  ],
+  "public_batch_sha256": "ca1d87704f1c65ea728aab61c3fc614fec253a2cb45edf0e239897bf27ecb72a",
+  "no_generator_or_sealed_outcomes_available": true
+}

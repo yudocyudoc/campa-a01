@@ -1,0 +1,16 @@
+{
+  "experiment": "A10",
+  "generator_case": "W016",
+  "generator_family": "first_order_relaxation",
+  "generator_true_feature": "incoming_orders/nominal_capacity",
+  "labels_sha256": {
+    "holdout_labels_noiseless.csv": "0f5b731aa789d7c364a42d2525d487db0bef537bf38f81f9f684055a3687a952",
+    "holdout_labels_noisy_1pct.csv": "39b79404293e1125fd462533802e32fdd6ae01d51c79fcc8b8d403bd4453ab5c"
+  },
+  "public_sha256": {
+    "train_noiseless.csv": "94c93ef4057e2f03b7b0b185a09bc93410a9514a3bb0061c01aca8ae7006ab01",
+    "train_noisy_1pct.csv": "54404630e08500ac69faf734cfd06f80f2728fc7a8a27c5eeadd38b9031c5c6d",
+    "holdout_inputs.csv": "c31868e60fecc909ae39977a28e06dda1f369eacb7f76d0d8016140502659b14"
+  },
+  "separation_note": "Labels were created after the analyst predictions were frozen"
+}
