@@ -3,6 +3,7 @@
 **Primera campaña completa de referencia:** [GitHub Actions 38182540105](https://github.com/yudocyudoc/campa-a01/actions/runs/38182540105).  
 **Diseño sin cambios respecto de A10:** W016, cinco escenarios TRAIN, 17 HOLDOUT, familias `diff_c` y `ratio_p`, DE+TRF y umbral de abstención `0.005`.  
 **Semillas predefinidas:** `20261011` a `20261020`; ruido gaussiano de desviación típica **1% de K**, agregado únicamente a la capacidad efectiva observada, con clipping físico.  
+**Evidencia permanente:** [164 archivos originales](evidence/) separados por frontera (41 públicos, 31 del analista y 92 de adjudicación/regeneración), con [manifiesto de hashes SHA-256](evidence_manifest.json) y verificación cruzada contra la corrida ejecutada. El workflow de archivado con escritura fue eliminado.  
 **Lectura epistemológica:** frecuencias descriptivas bajo una familia verdadera conocida y anidada. Ni identificación causal general ni previsión de una intervención endógena.
 
 ## Resultado principal (condición con ruido)
