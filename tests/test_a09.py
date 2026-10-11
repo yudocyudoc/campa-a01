@@ -50,6 +50,30 @@ class A09AnalyticTests(unittest.TestCase):
         self.assertEqual(identify_regime(0.,0.8,0.4)["input_state"],"inactive")
         self.assertEqual(identify_regime(0.,0.8,0.4)["output_state"],"clipped")
 
+    def test_nested_ratio_power_reproduces_weighted_world_forcing(self):
+        # Not causal discovery: p=1 algebraically CONTAINS the WORLD.
+        theta=0.217463058
+        world_gain=0.4395624912697545
+        tau=beta(theta)
+        nested_gain=4.0*world_gain
+        for k in (90.,115.,145.,180.,220.):
+            for d in (60.,90.,120.,150.,210.,260.):
+                world_forcing=world_gain*world_excess(d,k,theta)
+                nested_forcing=nested_gain*max(d/(k**1.0)-tau,0.0)
+                self.assertAlmostEqual(world_forcing,nested_forcing,places=12)
+
+    def test_slope_scaling_of_ratio_power_requires_p_one_for_two_k(self):
+        k1,k2=115.,145.
+        world_gain=0.4395624912697545
+        # For equality on open active demand intervals, slopes must match.
+        for p in (0.8,1.2):
+            implied_gain_k1=world_slope_at_k(k1,world_gain)*k1**p
+            implied_gain_k2=world_slope_at_k(k2,world_gain)*k2**p
+            self.assertFalse(math.isclose(implied_gain_k1,implied_gain_k2,rel_tol=1e-10))
+        implied_gain_k1=world_slope_at_k(k1,world_gain)*k1
+        implied_gain_k2=world_slope_at_k(k2,world_gain)*k2
+        self.assertAlmostEqual(implied_gain_k1,implied_gain_k2,places=12)
+
     def test_sparse_demand_is_not_an_open_interval_certificate(self):
         self.assertEqual(distinct_values([115.,115.000000000001,132.,132.]),2)
         self.assertAlmostEqual(world_slope_at_k(145.,0.439562),4*0.439562/145.)

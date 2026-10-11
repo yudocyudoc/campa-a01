@@ -2,6 +2,7 @@
 
 **Ejecución de referencia:** [GitHub Actions 38124252708](https://github.com/yudocyudoc/campa-a01/actions/runs/38124252708) · [Artefacto A09](https://github.com/yudocyudoc/campa-a01/actions/runs/38124252708/artifacts/11696915024).  
 **Fuente:** W016 de G5 y parámetros de A08 `9e42b0cb6ee4c50b23df3cfecc49e7597afc73e7`; sin reajustes, ecuaciones de simulación originales.  
+**Adjudicación cuantitativa post hoc:** [GLM_REVIEW_ADJUDICATION.md](GLM_REVIEW_ADJUDICATION.md) presenta la igualdad algebraica del control anidado \`ratio_p\`, las condiciones del corolario de pendiente y la discrepancia endógena separada en TRAIN/HOLDOUT. Conserva intactos los resultados originales.  
 **Estado técnico:** `COMPLETED`, cinco pruebas analíticas, verificación de todas las ecuaciones internas y reproducción exacta de los anclajes numéricos A08.  
 **Límite científico:** teorema **condicional sobre mapas dinámicos activos**, no certificación de mínimo RMS global ni identificación ciega a partir de los datos finitos.
 
