@@ -1,0 +1,23 @@
+{
+  "source_repository": "yudocyudoc/c0.0",
+  "source_commit": "d90ff87ba47572edd7d2084ecdc62dfba54cd14d",
+  "source_notebook": "CEI_C0_0_B1_SD5_A1_Auditoria_Identificabilidad_Leakage_ejecutado.ipynb",
+  "source_notebook_blob": "65c05c3e4e7bb7a5c2de9aa37e0ff11927fa16be",
+  "source_cell": 29,
+  "source": "Literal output RESUMEN A1 of executed notebook, not adjusted",
+  "summary": {
+    "n_worlds": 12,
+    "n_expressions": 57,
+    "reinforcing_grid_stable_first_order": 12,
+    "reinforcing_grid_net_reinforcing": 4,
+    "feature_equivalent_pairs": 204,
+    "direct_target_features": 3,
+    "all_probe_truth_class_best": 9,
+    "n_cases": 12
+  },
+  "direct_target_feature_ids": [
+    "ratio::incoming_orders/effective_capacity",
+    "ratio::nominal_capacity/effective_capacity",
+    "ratio::fulfilled/effective_capacity"
+  ]
+}
