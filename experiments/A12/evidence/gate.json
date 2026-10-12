@@ -1,0 +1,158 @@
+{
+  "experiment": "A12",
+  "stage": "CANDIDATE_ONLY_DECISION_VALUE_GATE",
+  "verdict": "NO_MATERIAL_DECISION_DISAGREEMENT",
+  "world_evaluated_in_gate": false,
+  "grid": {
+    "shocks": [
+      20.0,
+      30.0,
+      40.0,
+      50.0,
+      60.0,
+      70.0,
+      80.0,
+      90.0,
+      100.0
+    ],
+    "capacities": [
+      90.0,
+      95.0,
+      100.0,
+      105.0,
+      110.0,
+      115.0,
+      120.0,
+      125.0,
+      130.0,
+      135.0,
+      140.0,
+      145.0,
+      150.0,
+      155.0,
+      160.0,
+      165.0,
+      170.0,
+      175.0,
+      180.0,
+      185.0,
+      190.0,
+      195.0,
+      200.0,
+      205.0,
+      210.0,
+      215.0,
+      220.0,
+      225.0,
+      230.0,
+      235.0,
+      240.0,
+      245.0,
+      250.0,
+      255.0,
+      260.0
+    ],
+    "arms": [
+      "noiseless",
+      "noisy_1pct"
+    ],
+    "families": [
+      "ratio_p",
+      "diff_c"
+    ]
+  },
+  "materiality_criterion": {
+    "each_model_regret_at_least_fraction_of_own_cash_range": 0.05,
+    "qualifying_shocks_required_in_both_arms": 3,
+    "required_fraction_of_shocks": 0.3333333333333333,
+    "regret_definition": "Model's optimum cash minus cash when following other model's preferred policy",
+    "both_models_must_prefer_different_capacity": true,
+    "reason": "Screen meaningful decision differences, not visual mechanism gaps"
+  },
+  "qualifying_by_arm": {
+    "noiseless": 0,
+    "noisy_1pct": 0
+  },
+  "qualifying_in_both_arms": 0,
+  "qualifying_shock_values": [],
+  "different_recommendations_by_arm": {
+    "noiseless": 4,
+    "noisy_1pct": 4
+  },
+  "candidate_only_best_exploratory_shock": 70.0,
+  "world_adjudication_shock_if_authorized": null,
+  "ranked_candidate_shocks": [
+    {
+      "shock": 70.0,
+      "robust_symmetric_fraction": 0.012179457131330734,
+      "passes_both_arms": false
+    },
+    {
+      "shock": 80.0,
+      "robust_symmetric_fraction": 0.005912205621745681,
+      "passes_both_arms": false
+    },
+    {
+      "shock": 30.0,
+      "robust_symmetric_fraction": 0.0034224529869724134,
+      "passes_both_arms": false
+    },
+    {
+      "shock": 100.0,
+      "robust_symmetric_fraction": 0.0020797726762887448,
+      "passes_both_arms": false
+    },
+    {
+      "shock": 20.0,
+      "robust_symmetric_fraction": 0.0,
+      "passes_both_arms": false
+    },
+    {
+      "shock": 40.0,
+      "robust_symmetric_fraction": 0.0,
+      "passes_both_arms": false
+    },
+    {
+      "shock": 50.0,
+      "robust_symmetric_fraction": 0.0,
+      "passes_both_arms": false
+    },
+    {
+      "shock": 60.0,
+      "robust_symmetric_fraction": 0.0,
+      "passes_both_arms": false
+    },
+    {
+      "shock": 90.0,
+      "robust_symmetric_fraction": 0.0,
+      "passes_both_arms": false
+    }
+  ],
+  "authorization_for_world": false,
+  "naive_benchmarks": [
+    "no_change_115",
+    "maximum_capacity_260",
+    "estimated_uncongested_peak_demand"
+  ],
+  "checks": {
+    "a11_equations_and_frozen_forecasts_reproduced": true
+  },
+  "source_sha256": {
+    "a11_analyst_freeze": "5374a6ff6347bd3d382d05f297f14338084e1f1980a0f9a20633f42d987ae7ee",
+    "a11_predecision_snapshot": "68f0dfa781a4a614a0884c5f725946e5b191de3a78f572f729d0014ba856f7bd",
+    "a11_frozen_forecasts": "e64bda327d35e0e7088baed63ff04e5783032175aef5feb4a3e094deaf02ffee"
+  },
+  "limitations": [
+    "This is a post-A11 exploratory selection study; the materiality threshold is a design choice, not a statistical calibration.",
+    "All scores, regrets and naive comparisons are CANDIDATE-PREDICTED; no WORLD truth in gate.",
+    "Two hypotheses share stipulated, exactly correct business feedback equations.",
+    "ratio_p contains generating feature; only one known synthetic W016 world was used in earlier experiments.",
+    "Cash range is over this fixed 35-policy menu; results can change with policy set and objective.",
+    "The uncongested peak-demand heuristic deliberately ignores backlog-related churn.",
+    "A negative gate speaks only to this grid, this objective and these two fitted candidates."
+  ],
+  "csv_sha256": {
+    "scenarios.csv": "1d0c019e8857312d0dee66d4933564dfacef0b442b260e4fd014357ccfc18be0",
+    "candidate_policy_cash.csv": "ed7eda6474c632504ab89fc8905993944887778a51867c1a9fecaf82e6771bb9"
+  }
+}

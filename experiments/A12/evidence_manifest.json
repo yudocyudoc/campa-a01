@@ -1,0 +1,13 @@
+{
+  "all_original_and_source_sha256_verified": true,
+  "experiment": "A12",
+  "original_workflow_run_id": 38186398116,
+  "scientific_source_head": "03f944ef83b8070efd9204c8c205cb63fbda5767",
+  "sha256": {
+    "candidate_policy_cash.csv": "ed7eda6474c632504ab89fc8905993944887778a51867c1a9fecaf82e6771bb9",
+    "gate.json": "ba8632823eb48f1957718a14b5f5a369e234ae559729251f48c60ac46b26a09d",
+    "scenarios.csv": "1d0c019e8857312d0dee66d4933564dfacef0b442b260e4fd014357ccfc18be0"
+  },
+  "source": "Original successful CI files, extracted without modifications",
+  "world_stage": "SKIPPED_BY_CANDIDATE_GATE"
+}
