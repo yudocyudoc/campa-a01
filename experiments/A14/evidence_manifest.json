@@ -1,0 +1,27 @@
+{
+  "experiment": "A14",
+  "status": "EXPLORATORY_CANDIDATE_ONLY",
+  "ci_run_url": "https://github.com/yudocyudoc/campa-a01/actions/runs/38198655969",
+  "ci_head_sha": "62a62d5b372d392d99c7e63127d941dcc28649e4",
+  "origin": "Exact original output bytes from candidate-only GitHub Actions; no WORLD or adjudicator",
+  "world_evaluated": false,
+  "original_sha256": {
+    "policies.csv": "ce66a3a3092726db4a8860ad10e9c0119ce04cd281b6d325e2b7a36e4cc744da",
+    "summary.csv": "33549c519316ab3c5902cba609ab05aa4e4f5c6b812a78f1d27436c02227fb77",
+    "summary.json": "a9b31fe70cc840208b463514268a57eef0d7aa264b6a7d55e3613c5c6547c01b"
+  },
+  "original_git_blobs": {
+    "policies.csv": "fbd2df0aab094886e41535a5a44bc5efa5bf0598",
+    "summary.csv": "dd37d96c6d9fb4ea54882c15e69d6ddbda3ee972",
+    "summary.json": "b70370fb3fc95870d06d949aeb7726bacbc4bfd5"
+  },
+  "a14_run_git_blob_sha": "3b94ca7983a94bf599c4ac0995796791fdcd1262",
+  "a12_anchor_ratio_p_forecasts": 630,
+  "cases": 180,
+  "limitations": [
+    "Numerical identity and provenance are independent of whether the assumptions reflect a real business.",
+    "The full ratio_p A11 fit is the nominal evaluation reference, NOT independent WORLD truth.",
+    "The same fitted ratio_p response parameters appear in all five candidate models.",
+    "Original 201-point stress grid is an exploratory policy-robustness scenario, not a probability model."
+  ]
+}
