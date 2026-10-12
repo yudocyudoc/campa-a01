@@ -1,0 +1,50 @@
+name: CEI | A14 minimal SD x robust capacity (candidate-only)
+
+on:
+  pull_request:
+    paths:
+      - 'experiments/A14/**'
+      - 'tests/test_a14.py'
+      - '.github/workflows/cei-a14.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exploratory-candidate-only:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Sparse checkout model contract, frozen A11 inputs and A12 candidate curves ONLY
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            experiments/A11/contract.py
+            experiments/A11/evidence/analyst/analyst_freeze.json
+            experiments/A11/evidence/public/predecision_snapshot.csv
+            experiments/A12/evidence/candidate_policy_cash.csv
+            experiments/A14/run.py
+            tests/test_a14.py
+          sparse-checkout-cone-mode: false
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Ensure WORLD and adjudicators physically absent
+        run: |
+          test ! -e experiments/A08/g5_extended_core.py
+          test ! -e experiments/A11/adjudicate.py
+          test ! -e experiments/A12/adjudicate.py
+          test ! -e experiments/A11/evidence/adjudication/world_policy_outcomes.csv
+      - name: Test continuity and minimax logic without WORLD
+        run: python -m unittest discover -s tests -p test_a14.py -v
+      - name: Run minimal skeleton x policy uncertainty matrix
+        run: python -m experiments.A14.run --out results/A14
+      - name: Archive exploratory matrix
+        uses: actions/upload-artifact@v4
+        with:
+          name: a14-minimal-sd-robust-candidate-only
+          path: results/A14/
+          retention-days: 30
+          if-no-files-found: error
