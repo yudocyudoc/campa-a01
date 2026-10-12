@@ -1,5 +1,7 @@
 """A13 regression, integrity, and interpretation tests. Stdlib only."""
 import ast
+import hashlib
+import json
 import unittest
 from pathlib import Path
 
@@ -11,6 +13,18 @@ class A13Tests(unittest.TestCase):
     def setUpClass(cls):
         cls.fits, cls.snapshot = a13.inputs()
         cls.business = dict(c.BUSINESS)
+
+    def test_permanent_evidence_sha256(self):
+        root = Path(a13.__file__).parent
+        manifest = json.loads((root/"evidence_manifest.json").read_text(encoding="utf-8"))
+        self.assertEqual(manifest["experiment"], "A13")
+        self.assertEqual(set(manifest["sha256"]), {"cases.csv", "sources.csv", "summary.json"})
+        for name, expected in manifest["sha256"].items():
+            actual = hashlib.sha256((root/"evidence"/name).read_bytes()).hexdigest()
+            self.assertEqual(actual, expected, name)
+        summary = json.loads((root/"evidence"/"summary.json").read_text(encoding="utf-8"))
+        for name in ("cases.csv", "sources.csv"):
+            self.assertEqual(summary["csv_sha256"][name], manifest["sha256"][name])
 
     def test_design_and_no_oracle_imports(self):
         self.assertEqual(len(a13.SHOCKS), 9)
