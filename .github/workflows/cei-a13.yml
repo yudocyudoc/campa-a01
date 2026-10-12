@@ -25,6 +25,10 @@ jobs:
             experiments/A11/evidence/public/predecision_snapshot.csv
             experiments/A12/evidence/candidate_policy_cash.csv
             experiments/A13/run.py
+            experiments/A13/evidence_manifest.json
+            experiments/A13/evidence/cases.csv
+            experiments/A13/evidence/sources.csv
+            experiments/A13/evidence/summary.json
             tests/test_a13.py
           sparse-checkout-cone-mode: false
           persist-credentials: false
