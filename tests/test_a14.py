@@ -1,5 +1,7 @@
 """A14 offline controls: A12 continuity, ablations, minimax and no WORLD."""
 import ast
+import hashlib
+import json
 import math
 import unittest
 from pathlib import Path
@@ -12,6 +14,20 @@ class A14Tests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.fits, cls.snapshot = a14.inputs()
+
+    def test_archived_evidence_sha256(self):
+        folder = Path(a14.__file__).parent
+        m = json.loads((folder/"evidence_manifest.json").read_text(encoding="utf-8"))
+        self.assertEqual(m["experiment"], "A14")
+        self.assertFalse(m["world_evaluated"])
+        for name, expected in m["original_sha256"].items():
+            data = (folder/"evidence"/name).read_bytes()
+            self.assertEqual(hashlib.sha256(data).hexdigest(), expected, name)
+        summary = json.loads((folder/"evidence"/"summary.json").read_text(encoding="utf-8"))
+        self.assertEqual(summary["cases"], 180)
+        self.assertEqual(summary["a12_ratio_p_anchor_predictions"], 630)
+        for name in ("policies.csv", "summary.csv"):
+            self.assertEqual(summary["output_sha256"][name], m["original_sha256"][name])
 
     def test_design_and_closed_candidate_only_dependencies(self):
         self.assertEqual(len(a14.CAPACITIES), 35)
