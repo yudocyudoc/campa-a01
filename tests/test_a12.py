@@ -104,7 +104,7 @@ class TestA12(unittest.TestCase):
     def test_out_of_menu_and_inactivity_can_be_scored(self):
         p=(0.8043657644788427,.6341171854167286,1.7582499650781587,1.)
         with self.assertRaises(ValueError):
-            candidate_forecast(125.,50.,self.snapshot(),p,"ratio_p")
+            candidate_forecast(127.,50.,self.snapshot(),p,"ratio_p")
         with self.assertRaises(ValueError):
             candidate_forecast(145.,55.,self.snapshot(),p,"ratio_p")
 
