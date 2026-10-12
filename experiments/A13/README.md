@@ -28,7 +28,7 @@ En cada caso se optimiza K con el modelo erróneo y se evalúa esa elección baj
 
 Un parámetro puede alterar mucho la caja prevista y aun así dar **arrepentimiento decisional cero** si no cambia la K seleccionada. Eso no implica irrelevancia económica.
 
-Se genera cases.csv (matriz de escenarios), sources.csv (resumen por fuente) y summary.json (diseño, límites, verificación y hashes). Los promedios en el ranking son descriptivos sobre una rejilla artificial, **no expectativas económicas ni EVPI/EVPPI**: no se asignaron probabilidades de error.
+Se genera `cases.csv` (matriz de escenarios), `sources.csv` (resumen por fuente) y `summary.json` (diseño, límites, verificación y hashes), archivados **permanentemente** en [evidence/](evidence/) junto a [evidence_manifest.json](evidence_manifest.json). Los tres archivos coinciden byte a byte con el artefacto de la corrida CI 38195865512; la prueba offline valida sus hashes SHA-256. Los promedios en el ranking son descriptivos sobre una rejilla artificial, **no expectativas económicas ni EVPI/EVPPI**: no se asignaron probabilidades de error.
 
 ## Barrera de información y límites
 
@@ -43,4 +43,4 @@ Desde la raíz del repositorio, con Python 3.11 estándar:
     python -m unittest discover -s tests -p test_a13.py -v
     python -m experiments.A13.run --out results/A13
 
-Los artefactos de GitHub Actions se conservan 30 días. El resultado interpretado se añadirá en RESULTS.md tras comprobar la ejecución.
+El artefacto GitHub Actions original caduca a los 30 días, pero `evidence/` y su manifiesto quedan versionados. Véase [RESULTS.md](RESULTS.md) para el ranking y sus límites. La corrida CI debe superar también el test de integridad de la evidencia permanente.
