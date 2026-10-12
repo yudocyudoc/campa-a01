@@ -2,7 +2,7 @@
 
 **Estado técnico:** ejecutado en [GitHub Actions #38195865512](https://github.com/yudocyudoc/campa-a01/actions/runs/38195865512), conclusión success. Seis pruebas unitarias aprobadas. La ejecución produjo 1,044 casos de sensibilidad y comprobó **1,260 predicciones sin perturbar** contra la evidencia original de A12; no consultó WORLD.
 
-**Evidencia completa:** [artefacto A13 (ZIP)](https://github.com/yudocyudoc/campa-a01/actions/runs/38195865512/artifacts/11722534349) (cases.csv, sources.csv, summary.json; retención CI: 30 días). El generador de resultados está versionado en run.py y es reproducible con Python estándar. Este documento y la evidencia son **exploratorios**, posteriores al análisis A12.
+**Evidencia permanente:** [evidence/](evidence/) (`cases.csv`, `sources.csv`, `summary.json`) y [evidence_manifest.json](evidence_manifest.json) con SHA-256 originales, hashes Git blob y procedencia del CI. Se preservó cada archivo **byte a byte** desde el [artefacto de GitHub Actions](https://github.com/yudocyudoc/campa-a01/actions/runs/38195865512/artifacts/11722534349), cuya copia temporal caduca a los 30 días. El generador versionado `run.py` sigue siendo reproducible con Python estándar. Este documento y la evidencia son **exploratorios**, posteriores al análisis A12.
 
 ## Resultado principal
 
@@ -41,6 +41,8 @@ Valores de **arrepentimiento bajo el modelo nominal** (unidades monetarias del s
 **Descomposición importante del precio:** su alto promedio se debe casi por completo al error extremo de ×0.50. La pérdida media es 59,243.81 en ×0.50, frente a 320.50 en ×0.75, 86.20 en ×1.25 y 152.86 en ×1.50. Por tanto, **no** interpretar el precio como segundo o tercer factor más sensible bajo errores moderados. Para la tasa base de pedidos, en cambio, incluso un error ×0.75 produce una pérdida media de 26,891.08; la sobreestimación ×1.25 produce 4,441.88. Es una asimetría condicional marcada.
 
 4. **Familia funcional:** los máximos condicionales de 2,205 y el promedio de 388 están muy por debajo de varios errores de coeficientes o de demanda. Es evidencia exploratoria de que, **en esta decisión y bajo estos supuestos**, puede importar más saber que el canal de erosión existe y estimar los flujos del negocio que reconstruir su parametrización funcional exacta.
+**Parámetros de adquisición:** `marketing_intensity` y `acquisition_per_marketing_unit` producen el mismo regret y la misma K en los casos comparados porque ambos alteran el producto de adquisición de clientes. **No generan pronósticos de caja idénticos**: `marketing_intensity` también modifica directamente el gasto de marketing, que es independiente de K en este modelo.
+
 5. **Errores con K inalterada:** costos fijos y otros parámetros pueden cambiar la caja pronosticada, aunque no cambien la capacidad óptima; por ello cases.csv conserva los errores de pronóstico por separado.
 
 ## Protocolo y reproducibilidad
@@ -52,12 +54,12 @@ Valores de **arrepentimiento bajo el modelo nominal** (unidades monetarias del s
 - Métrica: regret en el modelo nominal ratio_p por seguir K elegida bajo especificación errónea; se registra por separado el error de la previsión monetaria.
 - Los promedios en este documento no son EVPI, EVPPI ni costo esperado de error.
 
-**SHA-256 de la evidencia CI:**
+**SHA-256 de la evidencia original, ahora preservada en el repositorio:**
 
 - cases.csv: 203f43937e59475795c66376ae25860b9dd2917e090fa83157065938de1150b5
 - sources.csv: 23f95f301f46d589166ddcbfd71aaa187abec6296cd08fdd9f90f55144b8c3b7
 
-Los hashes coinciden con los registrados en summary.json. El runner además conserva SHA-256 de A11.contract, fits, snapshot y curvas A12.
+Los hashes coinciden con `summary.json`; `evidence_manifest.json` también conserva la huella del propio resumen (`2b709e92…`) y el commit `135c50ad…` de la corrida original. El runner preservó hashes SHA-256 de A11.contract, los ajustes, el snapshot y las curvas A12. Una prueba unitaria comprobará la integridad de los tres archivos archivados.
 
 ## Lo que A13 NO demuestra
 
