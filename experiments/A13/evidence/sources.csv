@@ -1,0 +1,17 @@
+category,source,cases,different_k,mean_regret_across_design_grid,median_regret_across_design_grid,max_regret,worst_shock,worst_arm,worst_factor,max_abs_prediction_error_at_chosen
+coefficient,base_order_rate,72,72,22695.849159841913,16940.85008609754,60135.46633502129,100.0,noiseless,0.5,40297.54929983357
+driver_presence,gain_zero,18,18,20264.677915145316,20108.15257890107,26232.47567785171,100.0,noiseless,0.0,31001.391604185417
+coefficient,price,72,36,14950.843894759148,78.7517439911935,75766.53829832596,100.0,noiseless,0.5,138508.29486083984
+shock_uncertainty,future_shock,72,72,14092.630103207437,6492.484849361441,60135.46633502129,100.0,noiseless,0.5,39677.88308255766
+family,diff_c,18,8,388.0461244504838,0.0,2204.71717248423,80.0,noiseless,1.0,2484.3193369619366
+coefficient,acquisition_per_marketing_unit,72,35,339.7894021950755,0.0,2204.71717248423,80.0,noiseless,0.5,1455.661111756257
+coefficient,marketing_intensity,72,35,339.7894021950755,0.0,2204.71717248423,80.0,noiseless,0.5,7674.892033587163
+coefficient,variable_cost_per_order,72,26,299.2906975185187,0.0,2845.282128598592,50.0,noiseless,1.5,79321.87496042001
+coefficient,collection_delay,72,17,83.81589191103652,0.0,772.4318045759646,70.0,noisy_1pct,1.5,20133.693764209747
+coefficient,base_churn,72,10,32.94118089398469,0.0,336.50508077466293,30.0,noiseless,1.5,454.53380101723087
+coefficient,capacity_cost_per_extra_unit,72,8,25.72247774239842,0.0,336.50508077466293,30.0,noiseless,1.5,9200.0
+coefficient,cancel_rate,72,0,0.0,0.0,0.0,20.0,noiseless,0.5,2.7483846456707397
+coefficient,customer_loss_per_cancel,72,0,0.0,0.0,0.0,20.0,noiseless,0.5,2.844934159395052
+coefficient,fixed_cost,72,0,0.0,0.0,0.0,20.0,noiseless,0.5,32000.000000000015
+coefficient,marketing_cost_per_unit,72,0,0.0,0.0,0.0,20.0,noiseless,0.5,6400.000000000007
+coefficient,minimum_fraction,72,0,0.0,0.0,0.0,20.0,noiseless,0.5,0.0
