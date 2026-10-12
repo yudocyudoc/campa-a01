@@ -46,4 +46,4 @@ Ejecutar en la raíz del repositorio con Python 3.11 estándar:
     python -m unittest discover -s tests -p test_a14.py -v
     python -m experiments.A14.run --out results/A14
 
-El resultado comprende 180 filas de políticas (2 brazos × 9 shocks × 5 modelos × 2 reglas) en policies.csv, diez filas resumidas en summary.csv y summary.json con hashes y limitaciones. La evidencia permanente se archivará después de reproducirla y revisarla; artefactos Actions duran 30 días.
+El resultado comprende 180 filas de políticas (2 brazos × 9 shocks × 5 modelos × 2 reglas) en policies.csv, diez filas resumidas en summary.csv y summary.json con hashes y limitaciones. La evidencia ya está preservada en [evidence/](evidence/) y [evidence_manifest.json](evidence_manifest.json), con coincidencia byte a byte frente a la corrida original de GitHub Actions; la prueba offline valida cada SHA-256. Véase [RESULTS.md](RESULTS.md). El ZIP temporal de Actions dura 30 días.
