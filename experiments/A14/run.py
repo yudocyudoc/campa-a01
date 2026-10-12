@@ -238,7 +238,7 @@ def summarize(rows):
                 "mean_nominal_regret_under_full": avg("nominal_regret_under_full"),
                 "mean_worst_regret_under_full": avg("worst_regret_under_full"),
                 "max_worst_regret_under_full": max(float(r["worst_regret_under_full"]) for r in group),
-                "mean_abs_delta_k": avg("delta_k") if rule == "minimax_regret" else avg("delta_k"),
+                "mean_abs_delta_k": sum(abs(float(r["delta_k"])) for r in group)/len(group),
                 "mean_abs_nominal_prediction_error": sum(
                     abs(float(r["nominal_prediction_error_at_selected_k"])) for r in group
                 )/len(group),
