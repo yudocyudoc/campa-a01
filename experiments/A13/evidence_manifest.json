@@ -1,0 +1,29 @@
+{
+  "experiment": "A13",
+  "evidence_kind": "EXPLORATORY_CANDIDATE_ONLY",
+  "source": "Original CI artifacts, reconstructed from source bytes without numeric modifications",
+  "original_workflow_run_id": 38195865512,
+  "original_workflow_url": "https://github.com/yudocyudoc/campa-a01/actions/runs/38195865512",
+  "original_ci_head": "135c50ad8eee477c6a597ee855c7fa28bc118a59",
+  "source_script_path": "experiments/A13/run.py",
+  "source_script_git_blob_sha": "38693cae1fe65aeb210d1535b0b752e6895a0318",
+  "external_world_access": false,
+  "all_original_evidence_git_blobs_byte_identical": true,
+  "sha256": {
+    "cases.csv": "203f43937e59475795c66376ae25860b9dd2917e090fa83157065938de1150b5",
+    "sources.csv": "23f95f301f46d589166ddcbfd71aaa187abec6296cd08fdd9f90f55144b8c3b7",
+    "summary.json": "2b709e92b8ba1cbe0a0af52e7de3ded24ab5e8037732cf1b0c86c0f092552526"
+  },
+  "git_blob_sha": {
+    "cases.csv": "361465a13300ca56f103efd297533ec8910d4446",
+    "sources.csv": "187264abffc0bdb33e5a2ec6667115b7ff3d2a95",
+    "summary.json": "d9dc230d3eb5b7ea98af7cb374583b61cb765668"
+  },
+  "source_sha256": {
+    "a11_contract": "8aae696ecf1dee30397edd0f9fad76fb7304b40e11a600da69cb2b8b3cc18fbe",
+    "a11_fit": "5374a6ff6347bd3d382d05f297f14338084e1f1980a0f9a20633f42d987ae7ee",
+    "a11_snapshot": "68f0dfa781a4a614a0884c5f725946e5b191de3a78f572f729d0014ba856f7bd",
+    "a12_curves": "ed7eda6474c632504ab89fc8905993944887778a51867c1a9fecaf82e6771bb9"
+  },
+  "provenance_note": "Permanent evidence is archival; no WORLD adjudication is implied. Files preserve CRLF CSV line endings used by Python's csv writer."
+}
