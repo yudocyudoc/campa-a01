@@ -1,0 +1,200 @@
+{
+  "experiment": "A14",
+  "status": "EXPLORATORY_CANDIDATE_ONLY",
+  "reference": "A11 frozen ratio_p fitted model per arm, NOT WORLD",
+  "a12_ratio_p_anchor_predictions": 630,
+  "shocks": [
+    20.0,
+    30.0,
+    40.0,
+    50.0,
+    60.0,
+    70.0,
+    80.0,
+    90.0,
+    100.0
+  ],
+  "capacities": [
+    90.0,
+    95.0,
+    100.0,
+    105.0,
+    110.0,
+    115.0,
+    120.0,
+    125.0,
+    130.0,
+    135.0,
+    140.0,
+    145.0,
+    150.0,
+    155.0,
+    160.0,
+    165.0,
+    170.0,
+    175.0,
+    180.0,
+    185.0,
+    190.0,
+    195.0,
+    200.0,
+    205.0,
+    210.0,
+    215.0,
+    220.0,
+    225.0,
+    230.0,
+    235.0,
+    240.0,
+    245.0,
+    250.0,
+    255.0,
+    260.0
+  ],
+  "arms": [
+    "noiseless",
+    "noisy_1pct"
+  ],
+  "models": [
+    "full",
+    "minimal",
+    "no_cancellations",
+    "no_churn_feedback",
+    "immediate_collections"
+  ],
+  "policies": [
+    "nominal",
+    "minimax_regret"
+  ],
+  "stress_relative": 0.25,
+  "stress_points": 201,
+  "cases": 180,
+  "cash_t": "PRE-FLOW t24",
+  "no_world_access": true,
+  "selection_independent_of_full_reference_for_minimal_models": true,
+  "no_refitting": true,
+  "no_new_materiality_gate": true,
+  "summary": [
+    {
+      "model": "full",
+      "decision_rule": "nominal",
+      "cases": 18,
+      "mean_nominal_regret_under_full": 0.0,
+      "mean_worst_regret_under_full": 14667.375015943524,
+      "max_worst_regret_under_full": 25418.87412084573,
+      "mean_abs_delta_k": 0.0,
+      "mean_abs_nominal_prediction_error": 0.0
+    },
+    {
+      "model": "full",
+      "decision_rule": "minimax_regret",
+      "cases": 18,
+      "mean_nominal_regret_under_full": 1819.6577418566665,
+      "mean_worst_regret_under_full": 4691.772729292013,
+      "max_worst_regret_under_full": 8186.010325894087,
+      "mean_abs_delta_k": 11.666666666666666,
+      "mean_abs_nominal_prediction_error": 0.0
+    },
+    {
+      "model": "minimal",
+      "decision_rule": "nominal",
+      "cases": 18,
+      "mean_nominal_regret_under_full": 345.6000359238981,
+      "mean_worst_regret_under_full": 11971.872063823113,
+      "max_worst_regret_under_full": 24811.673100516196,
+      "mean_abs_delta_k": 2.7777777777777777,
+      "mean_abs_nominal_prediction_error": 32223.53569842381
+    },
+    {
+      "model": "minimal",
+      "decision_rule": "minimax_regret",
+      "cases": 18,
+      "mean_nominal_regret_under_full": 2352.99107519,
+      "mean_worst_regret_under_full": 5162.459359380408,
+      "max_worst_regret_under_full": 8186.010325894087,
+      "mean_abs_delta_k": 15.0,
+      "mean_abs_nominal_prediction_error": 32375.532348632812
+    },
+    {
+      "model": "no_cancellations",
+      "decision_rule": "nominal",
+      "cases": 18,
+      "mean_nominal_regret_under_full": 0.0,
+      "mean_worst_regret_under_full": 14667.375015943524,
+      "max_worst_regret_under_full": 25418.87412084573,
+      "mean_abs_delta_k": 0.0,
+      "mean_abs_nominal_prediction_error": 1.5106544385639102
+    },
+    {
+      "model": "no_cancellations",
+      "decision_rule": "minimax_regret",
+      "cases": 18,
+      "mean_nominal_regret_under_full": 1819.6577418566665,
+      "mean_worst_regret_under_full": 4691.772729292013,
+      "max_worst_regret_under_full": 8186.010325894087,
+      "mean_abs_delta_k": 11.666666666666666,
+      "mean_abs_nominal_prediction_error": 0.0
+    },
+    {
+      "model": "no_churn_feedback",
+      "decision_rule": "nominal",
+      "cases": 18,
+      "mean_nominal_regret_under_full": 0.0,
+      "mean_worst_regret_under_full": 14667.375015943524,
+      "max_worst_regret_under_full": 25418.87412084573,
+      "mean_abs_delta_k": 0.0,
+      "mean_abs_nominal_prediction_error": 1.5106544385639102
+    },
+    {
+      "model": "no_churn_feedback",
+      "decision_rule": "minimax_regret",
+      "cases": 18,
+      "mean_nominal_regret_under_full": 1819.6577418566665,
+      "mean_worst_regret_under_full": 4691.772729292013,
+      "max_worst_regret_under_full": 8186.010325894087,
+      "mean_abs_delta_k": 11.666666666666666,
+      "mean_abs_nominal_prediction_error": 0.0
+    },
+    {
+      "model": "immediate_collections",
+      "decision_rule": "nominal",
+      "cases": 18,
+      "mean_nominal_regret_under_full": 345.6000359238981,
+      "mean_worst_regret_under_full": 11971.872063823113,
+      "max_worst_regret_under_full": 24811.673100516196,
+      "mean_abs_delta_k": 2.7777777777777777,
+      "mean_abs_nominal_prediction_error": 32223.540654312237
+    },
+    {
+      "model": "immediate_collections",
+      "decision_rule": "minimax_regret",
+      "cases": 18,
+      "mean_nominal_regret_under_full": 2352.99107519,
+      "mean_worst_regret_under_full": 5162.459359380408,
+      "max_worst_regret_under_full": 8186.010325894087,
+      "mean_abs_delta_k": 15.0,
+      "mean_abs_nominal_prediction_error": 32375.532348632812
+    }
+  ],
+  "source_sha256": {
+    "a11_contract": "8aae696ecf1dee30397edd0f9fad76fb7304b40e11a600da69cb2b8b3cc18fbe",
+    "a11_fit": "5374a6ff6347bd3d382d05f297f14338084e1f1980a0f9a20633f42d987ae7ee",
+    "snapshot": "68f0dfa781a4a614a0884c5f725946e5b191de3a78f572f729d0014ba856f7bd",
+    "a12_candidates": "ed7eda6474c632504ab89fc8905993944887778a51867c1a9fecaf82e6771bb9"
+  },
+  "limitations": [
+    "All outcomes are evaluated by the fitted full ratio_p reference; WORLD is never called.",
+    "The minimal model retains the fitted ratio_p response parameters, hence mechanism knowledge is privileged.",
+    "No-cancellations also removes cancellation-induced churn (bundled ablation).",
+    "Immediate-collections retains only repayment of OLD observed t8 receivables, and takes payment for new deliveries immediately.",
+    "Cross-model cash absolute levels are not comparable because collection timing differs; policies are evaluated with one full reference.",
+    "201 evenly spaced stress shocks represent a grid, not probabilities or a realistic uncertainty model.",
+    "Minimax-regret is optimized on EACH candidate's own model and then evaluated by the full fitted reference.",
+    "All business coefficients except the ablated processes remain disclosed, not learned.",
+    "Shocks/capacity grid are exploratory following A13; results are not blind confirmation."
+  ],
+  "output_sha256": {
+    "policies.csv": "ce66a3a3092726db4a8860ad10e9c0119ce04cd281b6d325e2b7a36e4cc744da",
+    "summary.csv": "33549c519316ab3c5902cba609ab05aa4e4f5c6b812a78f1d27436c02227fb77"
+  }
+}
